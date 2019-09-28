@@ -30,40 +30,40 @@ Si vous êtes courageux, vous pouvez essayer l'application *Git Kraken*. Cette a
 
 ## Commandes de bases de bash
 
-Pour voir tous les fichiers dans le repo que vous êtes situés :
+Pour voir tous les fichiers dans le repo que vous êtes situés :  
 *ls *
 
-Pour changer de dossier/path : 
-*cd leNomDossier* 
-OU
-*cd lePath*
-OU
-*cd ..* <------- Cela vous permet de basculer vers le dossier parent. Ex. d/patate/jambon, le dossier parent de jambon est patate
+Pour changer de dossier/path :  
+*cd leNomDossier*  
+OU  
+*cd lePath*  
+OU  
+*cd ..* <------- Cela vous permet de basculer vers le dossier parent. Ex. d/patate/jambon, le dossier parent de jambon est patate  
 
 ## Commandes de Git Bash
 
-Pour allez chercher le projet qui n'est pas sur votre ordinateur, vous allez devoir faire la commande suivante :
+Pour allez chercher le projet qui n'est pas sur votre ordinateur, vous allez devoir faire la commande suivante :  
 *git clone https://github.com/carrecuir1/Robot-S1-a19-GIGE.git* 
 
-Pour allez chercher les dernières modifications du repo(projet) en ligne :
+Pour allez chercher les dernières modifications du repo(projet) en ligne :  
 *git pull*
 
-Pour changer de branche :
+Pour changer de branche :  
 *git checkout nomDeLaBranche*
 
-Pour créé une nouvelle branche :
+Pour créé une nouvelle branche :  
 *git checkout -b nomDeLaBranche*
 
 Pour faire un commit : 
-*git add .* <-------- Cela va permettre d'indiquer quels fichiers à sauvegarder (le . signifie tous les fichiers du projet)
-*git commit -m "votreMessage"* <----- Faites des messages clairs et précis 
+*git add .* <-------- Cela va permettre d'indiquer quels fichiers à sauvegarder (le . signifie tous les fichiers du projet)  
+*git commit -m "votreMessage"* <----- Faites des messages clairs et précis   
 
-Allez porter vos commits sur le projet en ligne : 
+Allez porter vos commits sur le projet en ligne :   
 *git push*
 
-Pour voir les dernières modifications faitent : 
+Pour voir les dernières modifications faitent :   
 *git status*
 
-Voici un lien contenant d'autre commandes git utiles : https://dzone.com
+Voici un lien contenant d'autre commandes git utiles : https://dzone.com  
 
 /articles/top-20-git-commands-with-examples
