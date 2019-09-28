@@ -10,16 +10,22 @@ Si vous êtes courageux, vous pouvez essayer l'application *Git Kraken*. Cette a
 ## Quelques consignes de Git
 
 1 - Travaillez toujours sur votre branche de développement. ##Jamais sur la branche Master
+
 2 - Lors de vos commit, veuillez toujours mettre quelques mots expliquant ce que vous avez fait (Si possible, en anglais !). 
     Ex. : "Editing function PID increasing accuracy"
+    
 3 - Faites le plus de commit possible ! Cela va vous permettre d'avoir plusieurs lieux de sauvegarde dans le temps et retourner en arrière au besoin
+
 4 - Assurez-vous que le code merge dans master fonctionne (au pire des cas, contacter le responsable informatique ;) )
 
 ## Installation de Git Bash
 
 1 - Vous allez devoir installer Git via le lien suivant : https://gitforwindows.org/
+
 2 - Executez le Git.exe
+
 3 - Faisez suivant sans changer de réglage de l'installation (sauf si vous avez des préférences sur quelque paramètre de la console Bash)
+
 4 - Après l'installation, vous allez poouvoir lancer le GitBash.exe
 
 ## Commandes de bases de bash
