@@ -2,7 +2,7 @@
 #include <../lib/LibRobUS/src/LibRobus.h>
 #include <Structure/PID.h>
 
-#define consigne 0.5
+#define consigne 0.25
 bool stop = false;
 void setup() {
   BoardInit();

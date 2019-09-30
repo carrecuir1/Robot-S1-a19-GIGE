@@ -32,22 +32,5 @@ struct PID {
 
         return speedML;        
     }
-
-    /*float commande(int consigne, int encodeur, int DELAY)
-    {
-        const float ki = 0, kd = 0, kp = 1;
-        float iPasse;
-        int feedbackPasse = feedbackPresent;
-        feedbackPresent = ENCODER_ReadReset(encodeur);
-        int erreur = consigne - feedbackPresent;
-        float p = kp * erreur ;
-        iPasse = iPresent;
-        iPresent = (ki *  erreur ) + iPasse;
-        float d = kd * ( feedbackPresent - feedbackPasse);
-        float commande = p +iPresent - d ;
-        commande = map(commande, 0, 12*DELAY, 0.0, 1.0);  //conversion pulse
-
-        return commande;  
-    }*/
     
 };
