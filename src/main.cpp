@@ -1,29 +1,29 @@
 #include <Arduino.h>
 #include <../lib/LibRobUS/src/LibRobus.h>
-float speed_G;
-float speed_D;
+#include <Structure/PID.h>
 
+#define consigne 0.5
+bool stop = false;
 void setup() {
   BoardInit();
-  speed_G = 0.5;
-  speed_D = 0.5;
-  
 }
 
 void loop() {
-  int encoder_G, encoder_D;
+
+  PID pid = PID(consigne);
   if(ROBUS_IsBumper(3)){
+    MOTOR_SetSpeed(0, consigne);
+    MOTOR_SetSpeed(1, consigne);
+
     while(!ROBUS_IsBumper(2) and !ROBUS_IsBumper(1) and !ROBUS_IsBumper(0)){
-        encoder_G = ENCODER_ReadReset(0);
-        encoder_D = ENCODER_ReadReset(1);
-        MOTOR_SetSpeed(1, speed_G);
-        MOTOR_SetSpeed(0, speed_D);
-        speed_G = speed_G + 0.00015*(encoder_D - encoder_G);
+        //MOTOR_SetSpeed(1, pid.get(vitesseMoteur, 0 , 100));
         delay(100);
       }
-
   }
   MOTOR_SetSpeed(1, 0);
   MOTOR_SetSpeed(0, 0);
 }
 
+void execute(){
+
+}
