@@ -1,6 +1,7 @@
 #include <Arduino.h>
-#include <../lib/LibRobUS/src/LibRobus.h>
+#include <LibRobus.h>
 #include <Structure/PID.h>
+#include <Structure/Motor.h>
 
 #define consigne 0.25
 bool stop = false;
@@ -11,8 +12,10 @@ void setup() {
 void loop() {
 
   PID pid = PID(consigne);
+  Motor motor = Motor();
   if(ROBUS_IsBumper(3)){
-    MOTOR_SetSpeed(0, consigne);
+    motor.angleTurn(45,consigne);
+    /*MOTOR_SetSpeed(0, consigne);
     delay(100);
     MOTOR_SetSpeed(1, consigne);
 
@@ -21,7 +24,7 @@ void loop() {
         float patate = pid.getPID();
         MOTOR_SetSpeed(1,patate);
         delay(100);
-      }
+      }*/
   }
   MOTOR_SetSpeed(1, 0);
   MOTOR_SetSpeed(0, 0);
