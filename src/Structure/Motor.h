@@ -12,7 +12,7 @@ struct Motor {
         MOTOR_SetSpeed(0,consigne);
         MOTOR_SetSpeed(1,-consigne);
         int32_t encoderL = ENCODER_ReadReset(0);
-        while(encoderL < 3600){
+        while(encoderL < (angle*10)){ // 1 degré = 10 pulse
             encoderL = ENCODER_Read(0);
             delay(100);
         }

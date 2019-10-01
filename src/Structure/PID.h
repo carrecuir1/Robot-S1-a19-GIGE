@@ -1,23 +1,23 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 
-#define kP 0.000001
-#define kI 0.0000002
+#define kP 0.00005
+#define kI 0.000003
 // Moteur gauche est esclave au moteur droit
 struct PID {
-    int32_t speedML;
+    float speedML;
     float meterMotorL, meterMotorR; //Compteur de distance de chacun des moteurs
     int index;
 
-    PID(int8_t consigne){
+    PID(float consigne){
         index = 1;
         speedML = consigne;
         meterMotorL = 0;
         meterMotorR = 0;
     }
     
-    int32_t getPID(){
-        int32_t motorR,motorL;
+    float getPID(){
+        float motorR,motorL;
 
         motorR = ENCODER_ReadReset(1);
         motorL = ENCODER_ReadReset(0);
