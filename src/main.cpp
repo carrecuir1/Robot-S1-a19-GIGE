@@ -3,7 +3,7 @@
 #include <Structure/PID.h>
 #include <Structure/Motor.h>
 
-#define consigne 0.5
+#define consigne 0.4
 bool stop = false;
 void setup() {
   BoardInit();
@@ -11,25 +11,33 @@ void setup() {
 
 void loop() {
 
- // PID pid = PID(consigne);
+  PID pid = PID(consigne);
   Motor motor = Motor();
+  bool test = true;
   if(ROBUS_IsBumper(3)){
-    motor.straightRun(100, consigne);
-    motor.angleTurn(45,consigne);
-    motor.straightRun(100, consigne);
-    /*MOTOR_SetSpeed(0, consigne);
-    delay(100);
-    MOTOR_SetSpeed(1, consigne);
 
-    while(!ROBUS_IsBumper(2) and !ROBUS_IsBumper(1) and !ROBUS_IsBumper(0)){
+
+    //ENCODER_Reset(0);
+    //ENCODER_Reset(1);
+
+    //MOTOR_SetSpeed(0, consigne);
+    //delay(100);
+    //MOTOR_SetSpeed(1, consigne);
+
+    
+
+    while(!ROBUS_IsBumper(2) and !ROBUS_IsBumper(1) and !ROBUS_IsBumper(0) and test == true){
         //MOTOR_SetSpeed(1, pid.get(vitesseMoteur, 0 , 100));
-        float patate = pid.getPID();
-        MOTOR_SetSpeed(1,patate);
+        motor.straightRun(115, consigne);
         delay(100);
-      }*/
+        motor.angleTurn(-90,consigne);
+        delay(100);
+        motor.straightRun(110, consigne);
+        test = false;
+      }
   }
-  //MOTOR_SetSpeed(1, 0);
-  //MOTOR_SetSpeed(0, 0);
+  MOTOR_SetSpeed(1, 0);
+  MOTOR_SetSpeed(0, 0);
   
 }
 
