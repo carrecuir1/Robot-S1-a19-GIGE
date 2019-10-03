@@ -38,8 +38,8 @@ struct Motor {
         ENCODER_Reset(0);
         ENCODER_Reset(1);
 
-        MOTOR_SetSpeed(0,0.25);
-        MOTOR_SetSpeed(1,-0.25);
+        MOTOR_SetSpeed(0,consigne);
+        MOTOR_SetSpeed(1,-1*consigne);
 
         while(encoder0 < pulseToAchieve && -1*encoder1 < pulseToAchieve)
         {
@@ -48,10 +48,14 @@ struct Motor {
         }
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
+
         */
-        angleTurn(90,consigne);
+
+       
+        /* angleTurn(90,consigne);
         delay(200);
         angleTurn(-89,-1*consigne);    //-1 degre pour 180 bien fait
+        */
     }
     
 
