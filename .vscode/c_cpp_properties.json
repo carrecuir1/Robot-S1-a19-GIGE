@@ -6,6 +6,7 @@
         {
             "name": "Win32",
             "includePath": [
+<<<<<<< HEAD
                 "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/include",
                 "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/src",
                 "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/lib/LibRobUS/src",
@@ -17,11 +18,41 @@
                 "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
                 "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
                 "C:/Users/girm1002/.platformio/packages/tool-unity",
+=======
+<<<<<<< HEAD
+                "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/include",
+                "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/src",
+                "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/lib/LibGny",
+                "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/cores/arduino",
+                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/variants/mega",
+                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                "C:/Users/maxen/.platformio/packages/tool-unity",
+=======
+                "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/include",
+                "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/src",
+                "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/lib/LibRobUS/src",
+                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/cores/arduino",
+                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/variants/mega",
+                "C:/Users/ClientSIC/.platformio/lib/ArduinoJson_ID64/src",
+                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                "C:/Users/ClientSIC/.platformio/packages/tool-unity",
+>>>>>>> master
+>>>>>>> origin/fonction_avancer
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
+<<<<<<< HEAD
                     "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/include",
                     "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/src",
                     "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/lib/LibRobUS/src",
@@ -33,6 +64,35 @@
                     "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
                     "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
                     "C:/Users/girm1002/.platformio/packages/tool-unity",
+=======
+<<<<<<< HEAD
+                    "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/include",
+                    "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/src",
+                    "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/lib/LibGny",
+                    "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/cores/arduino",
+                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/variants/mega",
+                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                    "C:/Users/maxen/.platformio/packages/tool-unity",
+=======
+                    "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/include",
+                    "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/src",
+                    "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/lib/LibRobUS/src",
+                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/cores/arduino",
+                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/variants/mega",
+                    "C:/Users/ClientSIC/.platformio/lib/ArduinoJson_ID64/src",
+                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                    "C:/Users/ClientSIC/.platformio/packages/tool-unity",
+>>>>>>> master
+>>>>>>> origin/fonction_avancer
                     ""
                 ]
             },

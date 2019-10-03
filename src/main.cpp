@@ -3,7 +3,7 @@
 #include <Structure/PID.h>
 #include <Structure/Motor.h>
 
-#define consigne 0.25
+#define consigne 0.4
 bool stop = false;
 void setup() {
   BoardInit();
