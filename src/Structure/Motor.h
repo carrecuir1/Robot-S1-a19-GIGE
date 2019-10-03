@@ -28,7 +28,7 @@ struct Motor {
         MOTOR_SetSpeed(selectEncodeur,0);
     }
 
-    void straitRun(){
+    void straightRun(){
 
     }
 
