@@ -29,8 +29,24 @@ struct Motor {
     }
 
     void straitRun(){
-
     }
 
-    
+    void demiTour()
+    {
+        float pulseToAchieve = (180*circumference)/(360*distancePulse);
+        int32_t encoder0 = 0, encoder1 = 0;
+        ENCODER_Reset(0);
+        ENCODER_Reset(1);
+
+        MOTOR_SetSpeed(0,0.25);
+        MOTOR_SetSpeed(1,-0.25);
+
+        while(encoder0 < pulseToAchieve && -1*encoder1 < pulseToAchieve)
+        {
+            encoder0 = ENCODER_Read(0);
+            encoder1 = ENCODER_Read(1);
+        }
+        MOTOR_SetSpeed(0, 0);
+        MOTOR_SetSpeed(1, 0);
+    }
 };

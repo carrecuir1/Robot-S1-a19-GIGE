@@ -6,35 +6,33 @@
         {
             "name": "Win32",
             "includePath": [
-                "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/include",
-                "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/src",
-                "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/lib/LibRobUS/src",
-                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
-                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
-                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
-                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/cores/arduino",
-                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/variants/mega",
-                "C:/Users/ClientSIC/.platformio/lib/ArduinoJson_ID64/src",
-                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
-                "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
-                "C:/Users/ClientSIC/.platformio/packages/tool-unity",
+                "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/include",
+                "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/src",
+                "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/cores/arduino",
+                "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/variants/mega",
+                "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                "C:/Users/girm1002/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/include",
-                    "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/src",
-                    "d:/School/Université/S1 Automne 2019/Projet de session/Projet Session/lib/LibRobUS/src",
-                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
-                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
-                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
-                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/cores/arduino",
-                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/variants/mega",
-                    "C:/Users/ClientSIC/.platformio/lib/ArduinoJson_ID64/src",
-                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
-                    "C:/Users/ClientSIC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
-                    "C:/Users/ClientSIC/.platformio/packages/tool-unity",
+                    "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/include",
+                    "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/src",
+                    "c:/Users/girm1002/Desktop/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                    "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                    "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                    "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                    "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/cores/arduino",
+                    "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/variants/mega",
+                    "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                    "C:/Users/girm1002/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                    "C:/Users/girm1002/.platformio/packages/tool-unity",
                     ""
                 ]
             },
@@ -50,7 +48,7 @@
             "intelliSenseMode": "clang-x64",
             "cStandard": "c11",
             "cppStandard": "c++11",
-            "compilerPath": "\"C:/Users/ClientSIC/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe\" -mmcu=atmega2560"
+            "compilerPath": "\"C:/Users/girm1002/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe\" -mmcu=atmega2560"
         }
     ],
     "version": 4

@@ -28,6 +28,11 @@ void loop() {
   }
   MOTOR_SetSpeed(1, 0);
   MOTOR_SetSpeed(0, 0);
+
+  if(ROBUS_IsBumper(2))
+  {
+    motor.demiTour();
+  }
   
 }
 
