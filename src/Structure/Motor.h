@@ -1,7 +1,8 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 
-#define circumference 1169.0
+//chiffre doit terminer par ".0"
+#define circumference 1169.0 
 #define distancePulse 0.074809175064
 #define diameter 23.94
 
@@ -31,6 +32,39 @@ struct Motor {
         Serial.println(pulseToAchieve);
     }
 
+    void demiTour(float consigne)
+    {
+        PID pid = PID(consigne);
+
+        float pulseToAchieve = (180*circumference)/(360*distancePulse);
+        int32_t encoder0 = 0, encoder1 = 0;
+        ENCODER_Reset(0);
+        ENCODER_Reset(1);
+
+        MOTOR_SetSpeed(0,consigne);
+        MOTOR_SetSpeed(1,-1*pid.getPID());
+
+        //while(encoder0 < pulseToAchieve && -1*encoder1 < pulseToAchieve)
+        while(encoder0-encoder1 < pulseToAchieve-120)
+        {
+            encoder0 = ENCODER_Read(0);
+            encoder1 = ENCODER_Read(1);
+        }
+        MOTOR_SetSpeed(0, 0);
+        MOTOR_SetSpeed(1, 0);
+
+        
+
+       
+        /* angleTurn(90,consigne);
+        delay(200);
+        angleTurn(-89,-1*consigne);    //-1 degre pour 180 bien fait
+        */
+    }
+    
+
+   
+   
     void straightRun(float distance, float consigne)
     {
         float distanceRight = 0;
