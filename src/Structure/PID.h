@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 
-#define kP 0.00005
-#define kI 0.000005 
+#define kP 0.00004
+#define kI 0.000002
 //Robot 16B kP = 0.00005 kI = 0.000003
 //Robot 16A kP = 
 // Moteur gauche est esclave au moteur droit
