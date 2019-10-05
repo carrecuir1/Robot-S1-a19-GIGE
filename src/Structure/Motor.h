@@ -37,29 +37,22 @@ struct Motor {
         PID pid = PID(consigne);
 
         float pulseToAchieve = (180*circumference)/(360*distancePulse);
-        int32_t encoder0 = 0, encoder1 = 0;
+        int32_t encoderL = 0, encoderR = 0;
         ENCODER_Reset(0);
         ENCODER_Reset(1);
 
         MOTOR_SetSpeed(0,consigne);
         MOTOR_SetSpeed(1,-1*pid.getPID());
 
-        //while(encoder0 < pulseToAchieve && -1*encoder1 < pulseToAchieve)
-        while(encoder0-encoder1 < pulseToAchieve-120)
+        //while(encoderL < pulseToAchieve && -1*encoderR < pulseToAchieve)
+        while(encoderL-encoderR < pulseToAchieve-120)
         {
-            encoder0 = ENCODER_Read(0);
-            encoder1 = ENCODER_Read(1);
+            encoderL = ENCODER_Read(0);
+            encoderR = ENCODER_Read(1);
         }
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
 
-        
-
-       
-        /* angleTurn(90,consigne);
-        delay(200);
-        angleTurn(-89,-1*consigne);    //-1 degre pour 180 bien fait
-        */
     }
     
 

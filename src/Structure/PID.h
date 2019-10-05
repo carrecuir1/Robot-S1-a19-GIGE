@@ -1,9 +1,9 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 
-#define kP 0.00004
-#define kI 0.000002
-//Robot 16B kP = 0.00005 kI = 0.000003
+#define kP 0.00001
+#define kI 0.000001
+//Robot 16B kP = 0.00005 kI = 0.000005
 //Robot 16A kP = 
 // Moteur gauche est esclave au moteur droit
 struct PID {
