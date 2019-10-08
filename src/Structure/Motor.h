@@ -1,8 +1,10 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 
-#define circumference 1169.0
+//chiffre doit terminer par ".0"
+#define circumference 1169.0 
 #define distancePulse 0.074809175064
+#define diameter 23.94
 
 struct Motor {
     
@@ -26,11 +28,38 @@ struct Motor {
             encoder = ENCODER_Read(selectEncodeur);
         }
         MOTOR_SetSpeed(selectEncodeur,0);
+        Serial.println(encoder);
+        Serial.println(pulseToAchieve);
     }
 
+    void demiTour(float consigne)
+    {
+        PID pid = PID(consigne);
+
+        float pulseToAchieve = (180*circumference)/(360*distancePulse);
+        int32_t encoderL = 0, encoderR = 0;
+        ENCODER_Reset(0);
+        ENCODER_Reset(1);
+
+        MOTOR_SetSpeed(0,consigne);
+        MOTOR_SetSpeed(1,-1*pid.getPID());
+
+        //while(encoderL < pulseToAchieve && -1*encoderR < pulseToAchieve)
+        while(encoderL-encoderR < pulseToAchieve-120)
+        {
+            encoderL = ENCODER_Read(0);
+            encoderR = ENCODER_Read(1);
+        }
+        MOTOR_SetSpeed(0, 0);
+        MOTOR_SetSpeed(1, 0);
+
+    }
+    
+
+   
+   
     void straightRun(float distance, float consigne)
     {
-        float diameter = 23.94;
         float distanceRight = 0;
         PID motor(consigne);
         ENCODER_Reset(0);
@@ -64,12 +93,10 @@ struct Motor {
                 MOTOR_SetSpeed(1, consigne);
                 MOTOR_SetSpeed(0, motor.getPID());
                 distanceRight = (diameter * ENCODER_Read(1))/3200;
-
-                Serial.println(distanceRight);
-                Serial.println("avance");
            // }
             
         }while(distanceRight < distance);
+        Serial.println(distanceRight);
 
         Serial.println("arriver");
         MOTOR_SetSpeed(0, 0);
