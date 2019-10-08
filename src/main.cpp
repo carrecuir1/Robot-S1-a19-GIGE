@@ -3,7 +3,7 @@
 #include <Structure/PID.h>
 #include <Structure/Motor.h>
 
-#define consigne 0.4
+#define consigne 0.3
 bool stop = false;
 void setup() {
   BoardInit();
@@ -30,9 +30,9 @@ void loop() {
         //MOTOR_SetSpeed(1, pid.get(vitesseMoteur, 0 , 100));
         motor.straightRun(115, consigne);
         delay(100);
-        motor.angleTurn(-90,consigne);
+        motor.angleTurn(-85,consigne);
         delay(100);
-        motor.straightRun(90, consigne);
+        motor.straightRun(80, consigne);
         delay(100);
         motor.angleTurn(90,consigne);
         delay(100);
@@ -40,7 +40,7 @@ void loop() {
         delay(100);
         motor.angleTurn(45,consigne);
         delay(100);
-        motor.straightRun(169, 0.5);
+        motor.straightRun(169, consigne);
         delay(100);
         motor.angleTurn(-90,consigne);
         delay(100);
