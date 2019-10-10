@@ -13,7 +13,7 @@ void setup() {
 void loop() {
 
   PID pid = PID(consigne);
-  Motor motor = Motor();
+  Motor motor = Motor(consigne);
   /*if(ROBUS_IsBumper(0)){
     motor.demiTour(consigne);
   }*/
@@ -51,27 +51,27 @@ void loop() {
         /*
         motor.demiTour(consigne);
         delay(100);
-        motor.straightRun(120, consigne);
+        motor.straightRun(120);
         delay(100);
-        motor.angleTurn(-45, consigne);
+        motor.angleTurn(-45);
         delay(100);
-        motor.straightRun(60, consigne);
+        motor.straightRun(50);
         delay(100);
-        motor.angleTurn(90,consigne);
+        motor.angleTurn(90);
         delay(100);
-        motor.straightRun(185, 0.5);
+        motor.straightRun(175);
         delay(100);
-        motor.angleTurn(-45, consigne);
+        motor.angleTurn(-45);
         delay(100);
-        motor.straightRun(72, consigne);
+        motor.straightRun(70);
         delay(100);
-        motor.angleTurn(-90,consigne);
+        motor.angleTurn(-90);
         delay(100);
-        motor.straightRun(75, consigne);
+        motor.straightRun(70);
         delay(100);
-        motor.angleTurn(90,consigne);
+        motor.angleTurn(90);
         delay(100);
-        motor.straightRun(125, consigne);
+        motor.straightRun(122);
         delay(100);
         */
        
