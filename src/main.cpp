@@ -21,7 +21,7 @@ void loop() {
     voltage0 = sensorValue0 * 5.0/1023.0;
     voltage1 = sensorValue1 * 5.0/1023.0;
     voltage2 = sensorValue2 * 5.0/1023.0;
-    Serial.println("Voltage 1 : " + voltage0);
-    Serial.println("Voltage 2 : " + voltage1);
-    Serial.println("Voltage 3 : " + voltage2);
+    Serial.println(voltage0);
+    Serial.println(voltage1);
+    Serial.println(voltage2);
 }
