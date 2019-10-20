@@ -14,6 +14,7 @@ struct Motor {
         speed = consigne;
     }
     
+    //Fonction qui permet de tourner avec un moteur
     void angleTurn(float angle){
         int selectEncodeur = 0;
         int32_t encoder = 0;
@@ -34,6 +35,7 @@ struct Motor {
         Serial.println(pulseToAchieve);
     }
 
+    //Fonction qui permet de faire un u-turn avec les deux moteurs
     void uTurn()
     {
         PID pid = PID(speed);
@@ -46,7 +48,6 @@ struct Motor {
         MOTOR_SetSpeed(0, speed);
         MOTOR_SetSpeed(1,-1*pid.getPID());
 
-        //while(encoderL < pulseToAchieve && -1*encoderR < pulseToAchieve)
         while(encoderL-encoderR < pulseToAchieve-120)
         {
             encoderL = ENCODER_Read(0);
@@ -57,25 +58,34 @@ struct Motor {
 
     }
    
-    void straightRun(float distance)
+    //Permet d'avancer
+    void moveFront(float distance)
     {
+        moveDistance(distance, 1);
+    }
+
+    //Permet de reculer
+    void moveBack(float distance)
+    {
+        moveDistance(distance, -1);
+    }
+    
+    //Fonction qui avance sur une certaine distance
+    void moveDistance(float distance, int8_t direction)
+    {
+        float directionSpeed = speed * direction;
         float distanceRight = 0;
-        PID motor(speed);
+        PID motor(directionSpeed);
         ENCODER_Reset(0);
         ENCODER_Reset(1);
+        MOTOR_SetSpeed(1, directionSpeed);
         do
         {
-            Serial.println(speed);
-            Serial.println(motor.getPID());
-
-            MOTOR_SetSpeed(1, speed);
             MOTOR_SetSpeed(0, motor.getPID());
-            distanceRight = (diameter * ENCODER_Read(1))/3200;
-            
-        }while(distanceRight < distance);
-        Serial.println(distanceRight);
+            distanceRight = (diameter * ENCODER_Read(1))/3200;   
+        }
+        while(distanceRight < distance);
 
-        Serial.println("arriver");
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
     }
