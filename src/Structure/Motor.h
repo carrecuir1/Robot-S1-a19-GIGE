@@ -77,7 +77,7 @@ struct Motor {
         float distanceRight = 0;
         PID motor(directionSpeed);
         ENCODER_Reset(0);
-        ENCODER_Reset(1);
+        ENCODER_Reset(1);;
         MOTOR_SetSpeed(1, directionSpeed);
         do
         {
