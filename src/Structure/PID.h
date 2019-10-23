@@ -33,14 +33,8 @@ struct PID {
         meterMotorR += diffR;
         meterMotorL += diffL;
 
-       // Serial.println(diffR);
-        //Serial.println(diffL);
-
         float errorSpeed = kP*(diffR - diffL) + kI*(meterMotorR - meterMotorL); //On soustrait les deux encoders puis on multiplit par la valeur de kP.
         speedML = (speedML + errorSpeed);
-
-        //Serial.println("Vitesse");
-        //Serial.println(speedML);
 
         return speedML;        
     }
