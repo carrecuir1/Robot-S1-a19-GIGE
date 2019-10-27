@@ -8,6 +8,10 @@ struct PID {
     float speedML;
     float meterMotorL, meterMotorR, oldMML, oldMMR, motorR, motorL; //Compteur de distance de chacun des moteurs
 
+    PID(){
+
+    }
+
     PID(float consigne){
         speedML = consigne;
         meterMotorL = 0;
