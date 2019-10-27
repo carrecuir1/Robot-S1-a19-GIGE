@@ -3,8 +3,6 @@
 
 #define kP 0.00001
 #define kI 0.0000015
-//Robot 16B kP = 0.00005 kI = 0.000005
-//Robot 16A kP = 
 // Moteur gauche est esclave au moteur droit
 struct PID {
     float speedML;

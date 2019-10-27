@@ -56,13 +56,24 @@ struct Motor {
 
     }
    
-    //Permet d'avancer
-    void moveFront(float distance)
+    //Permet d'avancer dans un temps indéfini
+    void moveFoward(PID *motor){
+
+    }
+
+    //Permet de reculer dans un temps indéfini
+    void moveBackward(PID *motor){
+
+    }
+    
+    #pragma region Move a distance Functions
+    //Permet d'avancer selon une distance entrée
+    void moveFoward(float distance)
     {
         moveDistance(distance, 1);
     }
 
-    //Permet de reculer
+    //Permet de reculer selon une distance entrée
     void moveBackward(float distance)
     {
         moveDistance(distance, -1);
@@ -90,4 +101,5 @@ struct Motor {
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
     }
+    #pragma endregion Move a distance Functions
 };
