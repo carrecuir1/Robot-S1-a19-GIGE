@@ -8,11 +8,13 @@
 
 struct Motor {
 
-    float speed;
-    Motor(float consigne){
-        speed = consigne;
+    PID pid;
+
+    Motor(){
+        
     }
     
+    #pragma region TurnFunctions
     //Fonction qui permet de tourner avec un moteur
     void angleTurn(float angle){
         int selectMotor = 0; //Le moteur qui doit tourner. 
@@ -34,7 +36,7 @@ struct Motor {
     }
 
     //Fonction qui permet de faire un u-turn avec les deux moteurs
-    void uTurn()
+    void uTurn(float speed)
     {
         int32_t encoderL = 0, encoderR = 0;
         float pulseToAchieve = (180*circumference)/(360*distancePulse);
@@ -46,7 +48,7 @@ struct Motor {
         MOTOR_SetSpeed(0, speed);
         MOTOR_SetSpeed(1,-1*pid.getPID());
 
-        while(encoderL-encoderR < pulseToAchieve-120)
+        while(encoderL-encoderR < pulseToAchieve-120) //-120 pour la marge d'erreur
         {
             encoderL = ENCODER_Read(0);
             encoderR = ENCODER_Read(1);
@@ -56,33 +58,27 @@ struct Motor {
 
     }
    
-    //Permet d'avancer
-    void moveFront(float distance)
-    {
-        moveDistance(distance, 1);
-    }
+    #pragma endregion TurnFunctions
 
-    //Permet de reculer
-    void moveBackward(float distance)
-    {
-        moveDistance(distance, -1);
+    //Le robot avance pendant un temps indéfini
+    void move(float speed){
+        MOTOR_SetSpeed(1, speed);
+        checkPID();
+
     }
     
     //Fonction qui avance sur une certaine distance
-    void moveDistance(float distance, int8_t direction)
+    //Mettre un chiffre négatif ou positif pour la direction (-1, 1)
+    void moveDistance(float distance, float speed)
     {
         float distanceRight = 0;
-        float directionSpeed = speed * direction;
-        PID motor(directionSpeed);
 
-        ENCODER_Reset(0);
-        ENCODER_Reset(1);
+        resetPIDAndEncoder(speed);
 
-        MOTOR_SetSpeed(1, directionSpeed);
-
+        MOTOR_SetSpeed(1, speed);
         do
         {
-            MOTOR_SetSpeed(0, motor.getPID());
+            checkPID();
             distanceRight = (diameter * ENCODER_Read(1))/3200;
         }
         while(distanceRight < distance);
@@ -90,4 +86,22 @@ struct Motor {
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
     }
+
+    //Va reset le pid et les encodeurs
+    void resetPIDAndEncoder(float consigne){
+        ENCODER_Reset(0);
+        ENCODER_Reset(1);
+        pid = PID(consigne);
+    }
+
+    //Fonction qui va regarder le PID et changer la vitesse du motorGauche
+    void checkPID(){
+        MOTOR_SetSpeed(0, pid.getPID());
+    }
+
+    void stopMotors(){
+        MOTOR_SetSpeed(0,0);
+        MOTOR_SetSpeed(1,0);
+    }
+
 };
