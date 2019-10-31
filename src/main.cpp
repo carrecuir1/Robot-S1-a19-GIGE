@@ -1,7 +1,5 @@
 #include <Arduino.h>
 #include <LibRobus.h>
-#include <Structure/PID.h>
-#include <Structure/Motor.h>
 #include <Structure/suiveurLigne.h>
 
 #define consigne 0.35
@@ -12,6 +10,6 @@ void setup() {
 }
 
 void loop() {
-  suiveurLigne follow;
-  follow.suivreLigneDroite();
+      suiveurLigne follow;
+      follow.suivreLigneDroite();
 }

@@ -1,53 +1,55 @@
 #include <Arduino.h>
 #include <LibRobus.h>
+#include <Structure/PID.h>
 
-//chiffre doit terminer par ".0"
+//chiffre doit terminer par ".0" à cause du float
 #define circumference 1168.672467
 #define distancePulse 0.074809175064
 #define diameter 23.94
 
 struct Motor {
-    
-    float speed;
 
-    Motor(float consigne){
-        speed = consigne;
+    PID pid;
+
+    Motor(){
+
     }
     
+    #pragma region TurnFunctions
+    //Fonction qui permet de tourner avec un moteur
     void angleTurn(float angle){
-        int selectEncodeur = 0;
+        int selectMotor = 0; //Le moteur qui doit tourner. 
         int32_t encoder = 0;
-        float pulseToAchieve = 0.95*((abs(angle)*circumference)/(360*distancePulse));
+        float pulseToAchieve = 0.95*((abs(angle)*circumference)/(360*distancePulse)); //il faisait un angle trop grand. On a du mettre une petite patch de 0.95
 
         if(angle < 0){
-            selectEncodeur = 1;
+            selectMotor = 1;
         }
-        
-        ENCODER_Reset(selectEncodeur);
-        MOTOR_SetSpeed(selectEncodeur, 0.2);
-        
+
+        ENCODER_Reset(selectMotor);
+        MOTOR_SetSpeed(selectMotor, 0.2);
+
         while(abs(encoder) < pulseToAchieve){
-            encoder = ENCODER_Read(selectEncodeur);
+            encoder = ENCODER_Read(selectMotor);
         }
-        MOTOR_SetSpeed(selectEncodeur,0);
-        Serial.println(encoder);
-        Serial.println(pulseToAchieve);
+
+        MOTOR_SetSpeed(selectMotor,0);
     }
 
-    void uTurn()
+    //Fonction qui permet de faire un u-turn avec les deux moteurs
+    void uTurn(float speed)
     {
+        int32_t encoderL = 0, encoderR = 0;
+        float pulseToAchieve = (180*circumference)/(360*distancePulse);
         PID pid = PID(speed);
 
-        float pulseToAchieve = (180*circumference)/(360*distancePulse);
-        int32_t encoderL = 0, encoderR = 0;
         ENCODER_Reset(0);
         ENCODER_Reset(1);
 
         MOTOR_SetSpeed(0, speed);
         MOTOR_SetSpeed(1,-1*pid.getPID());
 
-        //while(encoderL < pulseToAchieve && -1*encoderR < pulseToAchieve)
-        while(encoderL-encoderR < pulseToAchieve-120)
+        while(encoderL-encoderR < pulseToAchieve-120) //-120 pour la marge d'erreur
         {
             encoderL = ENCODER_Read(0);
             encoderR = ENCODER_Read(1);
@@ -57,26 +59,50 @@ struct Motor {
 
     }
    
-    void straightRun(float distance)
+    #pragma endregion TurnFunctions
+
+    //Le robot avance pendant un temps indéfini
+    void move(float speed){
+        MOTOR_SetSpeed(1, speed);
+        checkPID();
+
+    }
+    
+    //Fonction qui avance sur une certaine distance
+    //Mettre un chiffre négatif ou positif pour la direction (-1, 1)
+    void moveDistance(float distance, float speed)
     {
         float distanceRight = 0;
-        PID motor(speed);
-        ENCODER_Reset(0);
-        ENCODER_Reset(1);
+
+        resetPIDAndEncoder(speed);
+
+        MOTOR_SetSpeed(1, speed);
         do
         {
-            Serial.println(speed);
-            Serial.println(motor.getPID());
-
-            MOTOR_SetSpeed(1, speed);
-            MOTOR_SetSpeed(0, motor.getPID());
+            checkPID();
             distanceRight = (diameter * ENCODER_Read(1))/3200;
-            
-        }while(distanceRight < distance);
-        Serial.println(distanceRight);
+        }
+        while(distanceRight < distance);
 
-        Serial.println("arriver");
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
     }
+
+    //Va reset le pid et les encodeurs
+    void resetPIDAndEncoder(float consigne){
+        ENCODER_Reset(0);
+        ENCODER_Reset(1);
+        pid = PID(consigne);
+    }
+
+    //Fonction qui va regarder le PID et changer la vitesse du motorGauche
+    void checkPID(){
+        MOTOR_SetSpeed(0, pid.getPID());
+    }
+
+    void stopMotors(){
+        MOTOR_SetSpeed(0,0);
+        MOTOR_SetSpeed(1,0);
+    }
+
 };

@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <LibRobus.h>
-#include <Structure/PID.h>
 #include <Structure/Motor.h>
 
 #define voltageNoir 4 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
@@ -19,20 +18,23 @@ struct suiveurLigne{
 
     void suivreLigneDroite()
     {
+
         float voltage[3];
+        float encodeur_droit = 0,encodeur_gauche = 0;
+        detection(voltage);
         Motor moteur;
-
-        while(0){
-
-            float encodeur_droit = 0,encodeur_gauche = 0;
-            detection(voltage);
+        moteur.resetPIDAndEncoder(0.2);
+            Serial.println(voltage[0]);
+            Serial.println(voltage[1]);
+            Serial.println(voltage[2]);
             //Si les trois capteurs voient la ligne noire
             while(voltage[0]>=voltageNoir && voltage[1]>=voltageNoir && voltage[2]>=voltageNoir){
             
-                moteur.straightRun(10); //Valeur de 10 peut-être à revoir, arbitraire
-                detection(voltage);
+                moteur.move(0.2); 
                 delay(20);
+                detection(voltage);
             }
+            moteur.stopMotors();
 
             //Si le capteur central voit la ligne noire mais que les deux autre capteurs non
             if(voltage[1]>=voltageNoir && (voltage[0]<voltageNoir || voltage[2]<voltageNoir)){
@@ -47,6 +49,7 @@ struct suiveurLigne{
                     encodeur_droit+=ENCODER_Read(1);
                     delay(20);
                 }
+                moteur.stopMotors();
                 //Après le quart de tour à gauche, si pas trouvé la ligne, refait la même opération vers la droite.
                 if(voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir){
 
@@ -61,28 +64,28 @@ struct suiveurLigne{
                         delay(20);
                     }
                 }
+                moteur.stopMotors();
 
             }
             //Si le capteur de l'avant voit la ligne noire mais que les deux autres capteurs non
             if(voltage[0]>=voltageNoir && voltage[2]<voltageNoir && voltage[1]<voltageNoir){
+                moteur.move(0.2); //Avance jusqu'à ce que le capteur central voie la ligne noire.       
                 while(voltage[1]<voltageNoir){
-                    moteur.straightRun(10); //Avance jusqu'à ce que le capteur central voie la ligne noire.
-                    detection(voltage);
                     delay(20);
+                    detection(voltage);
                 }
-
+                moteur.stopMotors();
             }
 
             //Si le capteur arrière voit la ligne noire mais que les deux autres capteurs non
             if(voltage[2]>=voltageNoir && voltage[1]<voltageNoir && voltage[0]<voltageNoir){
+                moteur.move(0.2); //Recule jusqu'à ce que le capteur central voie la ligne noire.
                 while(voltage[1]<voltageNoir){
-                    moteur.straightRun(-10); //Recule jusqu'à ce que le capteur central voie la ligne noire.
                     detection(voltage);
                     delay(20);
                 }
-                
+                moteur.stopMotors();
             }
-        }
     };
 
 };

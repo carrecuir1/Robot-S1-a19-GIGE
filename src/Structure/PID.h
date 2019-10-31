@@ -3,12 +3,14 @@
 
 #define kP 0.00001
 #define kI 0.0000015
-//Robot 16B kP = 0.00005 kI = 0.000005
-//Robot 16A kP = 
 // Moteur gauche est esclave au moteur droit
 struct PID {
     float speedML;
     float meterMotorL, meterMotorR, oldMML, oldMMR, motorR, motorL; //Compteur de distance de chacun des moteurs
+
+    PID(){
+
+    }
 
     PID(float consigne){
         speedML = consigne;
@@ -33,14 +35,8 @@ struct PID {
         meterMotorR += diffR;
         meterMotorL += diffL;
 
-       // Serial.println(diffR);
-        //Serial.println(diffL);
-
         float errorSpeed = kP*(diffR - diffL) + kI*(meterMotorR - meterMotorL); //On soustrait les deux encoders puis on multiplit par la valeur de kP.
         speedML = (speedML + errorSpeed);
-
-        //Serial.println("Vitesse");
-        //Serial.println(speedML);
 
         return speedML;        
     }
