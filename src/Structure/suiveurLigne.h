@@ -3,7 +3,7 @@
 #include <Structure/PID.h>
 #include <Structure/Motor.h>
 
-#define voltageNoir 5 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
+#define voltageNoir 4 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
 #define voltageCouleur 3 //Valeur située au-dessus du voltage pour le blanc, plus petit voltage entre jaune, rouge, bleu, vert.
 
 struct suiveurLigne{
@@ -17,38 +17,48 @@ struct suiveurLigne{
         voltage[2] = analogRead(2)*5.0/1023.0;
     }
 
-    void suivreLigneDroite(float voltage[3])
+    void suivreLigneDroite()
     {
+        float voltage[3];
+        Motor moteur;
+
         while(0){
+
+            float encodeur_droit = 0,encodeur_gauche = 0;
             detection(voltage);
             //Si les trois capteurs voient la ligne noire
             while(voltage[0]>=voltageNoir && voltage[1]>=voltageNoir && voltage[2]>=voltageNoir){
             
-                Motor.straightRun(10); //Valeur de 10 peut-être à revoir, arbitraire
+                moteur.straightRun(10); //Valeur de 10 peut-être à revoir, arbitraire
                 detection(voltage);
+                delay(20);
             }
 
             //Si le capteur central voit la ligne noire mais que les deux autre capteurs non
-            if(voltage[1]>=voltageNoir && (voltage[0]<voltageNoir || voltage[2]<voltageNoir){
+            if(voltage[1]>=voltageNoir && (voltage[0]<voltageNoir || voltage[2]<voltageNoir)){
             
                 ENCODER_Reset(0);
                 ENCODER_Reset(1);
                 //Tourne à gauche jusqu'à ce qu'il trouve, pour un max de 90 degrés.
-                while(voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir || condition){ //condition = quart de tour à gauche, **à coder**
+                while((voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir) && encodeur_droit <= 269){
                 
-                    Motor.angleTurn(-3); //Valeurs de ±3 peut-être à revoir, parfaitement arbitraire
+                    moteur.angleTurn(-3); //Valeurs de ±3 peut-être à revoir, parfaitement arbitraire
                     detection(voltage);
+                    encodeur_droit+=ENCODER_Read(1);
+                    delay(20);
                 }
                 //Après le quart de tour à gauche, si pas trouvé la ligne, refait la même opération vers la droite.
                 if(voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir){
 
-                    Motor.angleTurn(90);
+                    moteur.angleTurn(90);
                     ENCODER_Reset(0);
                     ENCODER_Reset(1);
-                    while(voltage[0]<voltageNoir||voltage[1]<voltageNoir||voltage[2]<voltageNoir||condition){ //condition = quart de tour à droite, **à coder**
+                    while((voltage[0]<voltageNoir||voltage[1]<voltageNoir||voltage[2]<voltageNoir) && encodeur_gauche <= 269){ 
                     
-                        Motor.angleTurn(3);
+                        moteur.angleTurn(3);
                         detection(voltage);
+                        encodeur_gauche+=ENCODER_Read(0);
+                        delay(20);
                     }
                 }
 
@@ -56,8 +66,9 @@ struct suiveurLigne{
             //Si le capteur de l'avant voit la ligne noire mais que les deux autres capteurs non
             if(voltage[0]>=voltageNoir && voltage[2]<voltageNoir && voltage[1]<voltageNoir){
                 while(voltage[1]<voltageNoir){
-                    Motor.straightRun(10); //Avance jusqu'à ce que le capteur central voie la ligne noire.
+                    moteur.straightRun(10); //Avance jusqu'à ce que le capteur central voie la ligne noire.
                     detection(voltage);
+                    delay(20);
                 }
 
             }
@@ -65,13 +76,13 @@ struct suiveurLigne{
             //Si le capteur arrière voit la ligne noire mais que les deux autres capteurs non
             if(voltage[2]>=voltageNoir && voltage[1]<voltageNoir && voltage[0]<voltageNoir){
                 while(voltage[1]<voltageNoir){
-                    Motor.straightRun(-10); //Recule jusqu'à ce que le capteur central voie la ligne noire.
+                    moteur.straightRun(-10); //Recule jusqu'à ce que le capteur central voie la ligne noire.
                     detection(voltage);
+                    delay(20);
                 }
                 
             }
         }
-        
-    }
+    };
 
 };

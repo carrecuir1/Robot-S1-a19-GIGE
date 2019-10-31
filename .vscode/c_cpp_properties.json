@@ -6,9 +6,9 @@
         {
             "name": "Win32",
             "includePath": [
-                "c:/Users/Martin/Documents/Uni/Robot-S1-a19-GIGE/include",
-                "c:/Users/Martin/Documents/Uni/Robot-S1-a19-GIGE/src",
-                "c:/Users/Martin/Documents/Uni/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/include",
+                "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/src",
+                "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/lib/LibRobUS/src",
                 "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
                 "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
                 "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
@@ -22,9 +22,9 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "c:/Users/Martin/Documents/Uni/Robot-S1-a19-GIGE/include",
-                    "c:/Users/Martin/Documents/Uni/Robot-S1-a19-GIGE/src",
-                    "c:/Users/Martin/Documents/Uni/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                    "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/include",
+                    "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/src",
+                    "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/lib/LibRobUS/src",
                     "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
                     "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
                     "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
