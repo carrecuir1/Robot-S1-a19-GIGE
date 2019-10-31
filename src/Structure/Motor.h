@@ -24,7 +24,7 @@ struct Motor {
         }
         
         ENCODER_Reset(selectEncodeur);
-        MOTOR_SetSpeed(selectEncodeur, 0.2);
+        MOTOR_SetSpeed(selectEncodeur, 0.25);
         
         while(abs(encoder) < pulseToAchieve){
             encoder = ENCODER_Read(selectEncodeur);

@@ -2,8 +2,11 @@
 #include <LibRobus.h>
 #include <Structure/PID.h>
 #include <Structure/Motor.h>
+#include <Adafruit_TCS34725.h>
+
 
 #define consigne 0.35
+
 bool test;
 void setup() {
   BoardInit();
@@ -12,67 +15,36 @@ void setup() {
 
 void loop() {
 
-  PID pid = PID(consigne);
-  Motor motor = Motor(consigne);
-  /*if(ROBUS_IsBumper(0)){
-    motor.demiTour(consigne);
-  }*/
-
+  Adafruit_TCS34725 colorSensor(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_1X);
+  uint16_t red, blue, green, clear;
   if(ROBUS_IsBumper(3)){
-    while(!ROBUS_IsBumper(2) and !ROBUS_IsBumper(1) and !ROBUS_IsBumper(0) and test == true){
-        //MOTOR_SetSpeed(1, pid.get(vitesseMoteur, 0 , 100));
-        motor.straightRun(122);
-        delay(100);
-        motor.angleTurn(-90);
-        delay(100);
-        motor.straightRun(70);
-        delay(100);
-        motor.angleTurn(90);
-        delay(100);
-        motor.straightRun(70);
-        delay(100);
-        motor.angleTurn(45);
-        delay(100);
-        motor.straightRun(175);
-        delay(100);
-        motor.angleTurn(-90);
-        delay(100);
-        motor.straightRun(50);
-        delay(100);
-        motor.angleTurn(45);
-        delay(100);
-        motor.straightRun(120);
-        delay(100);
-        //MILIEUX 
-        motor.uTurn();
-        delay(100);
-        motor.straightRun(120);
-        delay(100);
-        motor.angleTurn(-45);
-        delay(100);
-        motor.straightRun(50);
-        delay(100);
-        motor.angleTurn(90);
-        delay(100);
-        motor.straightRun(175);
-        delay(100);
-        motor.angleTurn(-45);
-        delay(100);
-        motor.straightRun(70);
-        delay(100);
-        motor.angleTurn(-90);
-        delay(100);
-        motor.straightRun(70);
-        delay(100);
-        motor.angleTurn(90);
-        delay(100);
-        motor.straightRun(122);
-        delay(100);
-        motor.uTurn();
-        motor.uTurn();
-        motor.uTurn();
-        motor.uTurn();
-        test = false;
+    while(!ROBUS_IsBumper(2) and !ROBUS_IsBumper(1) and !ROBUS_IsBumper(0)){
+      
+      if (colorSensor.begin()) 
+      {
+        Serial.println("Found sensor");
+      }   
+      else 
+      {
+        Serial.println("No TCS34725 found ... check your connections");
+        while (1);
+      }
+
+      colorSensor.getRawData(&red, &blue, &green, &clear);
+        //red = colorSensor.read16(TCS34725_RDATAL);
+        //green = colorSensor.read16(TCS34725_GDATAL);
+        //blue = colorSensor.read16(TCS34725_BDATAL);
+
+      Serial.print(red);
+      Serial.print(" ");
+      Serial.print(green);
+      Serial.print(" ");
+      Serial.print(blue);
+      Serial.print(" ");
+      Serial.print(clear);
+      Serial.print("\n");
+
+      delay(300);
     }
   }
 }
