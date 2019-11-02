@@ -14,9 +14,7 @@ struct Instruction {
 
     //Fonction qui va contenir les instructions du robot A
     void warriorChallengeA(){
-        moveRobot(1);
-        delay(1000);
-        moveRobot(-1);
+        motor.findColor('A', YELLOW);
     }
 
     //Fonction qui va contenir les instructions du robot B

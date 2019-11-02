@@ -5,6 +5,10 @@
 #define circumference 1168.672467
 #define distancePulse 0.074809175064
 #define diameter 23.94
+#define RED 0
+#define BLUE 1
+#define YELLOW 2
+#define GREEN 3
 
 struct Motor {
 
@@ -85,6 +89,117 @@ struct Motor {
 
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
+    }
+    void moveOverCircle(float distance)
+    {
+        ENCODER_Reset(0);
+        ENCODER_Reset(1);
+        float distanceRight = 0;
+        MOTOR_SetSpeed(0, 0.3);
+        MOTOR_SetSpeed(1, 0.3);
+        do
+        {
+            distanceRight = (diameter * ENCODER_Read(1))/3200;
+        }
+        while(distanceRight < distance);
+
+        MOTOR_SetSpeed(0, 0);
+        MOTOR_SetSpeed(1, 0);
+    }
+    void findColor(char robotName, int color)
+    {
+        Motor motor;
+
+        if(robotName == 'A')
+        {
+            switch (color)
+            {
+
+            case RED:
+                motor.moveDistance(15, 0.4);
+                moveOverCircle(17);
+                motor.angleTurn(-45);
+                moveOverCircle(17);
+                //SUIVRE LIGNE
+                break;
+
+            case GREEN:
+                motor.moveDistance(15, 0.4);
+                moveOverCircle(17);
+                motor.angleTurn(45);
+                moveOverCircle(17);
+                //SUIVRE LIGNE
+                break;
+
+             case BLUE:
+                motor.angleTurn(45);
+                motor.moveDistance(12, 0.4);
+                motor.angleTurn(95);
+                //SUIVRE LIGNE
+                break;
+
+            case YELLOW:
+                motor.angleTurn(-45);
+                motor.moveDistance(10, 0.4);
+                motor.angleTurn(-95);
+                //SUIVRE LIGNE
+                break;
+            default:
+                break;
+            }
+        }
+        else if(robotName == 'B')
+        {
+            switch (color)
+            {
+            case BLUE:
+                motor.angleTurn(45);
+                motor.moveDistance(12, 0.4);
+                motor.angleTurn(-90);  
+                //SUIVRE LIGNE
+                moveOverCircle(31);
+                //SUIVRE LIGNE
+                break;
+
+            case YELLOW:
+                motor.angleTurn(-45);
+                motor.moveDistance(12, 0.4);
+                motor.angleTurn(90);
+                //SUIVRE LIGNE
+                moveOverCircle(31);
+                //SUIVRE LIGNE
+                break;
+
+             case RED:
+                motor.angleTurn(-90);
+                motor.moveDistance(15, 0.4);
+                motor.angleTurn(90);
+                motor.moveDistance(31, 0.4);
+                motor.angleTurn(135);
+                //SUIVRE LIGNE
+                moveOverCircle(31);
+                //SUIVRE LIGNE
+                break;
+
+            case GREEN:
+                motor.angleTurn(90);
+                motor.moveDistance(15, 0.4);
+                motor.angleTurn(-90);
+                motor.moveDistance(31, 0.4);
+                //SUIVRE LIGNE
+                moveOverCircle(31);
+                //SUIVRE LIGNE
+                break;
+                
+            default:
+                break;
+            }
+        }
+        else
+        {
+            Serial.print("Invalid robot name");
+        }
+        
     }
 
     //Va reset le pid et les encodeurs
