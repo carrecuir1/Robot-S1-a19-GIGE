@@ -2,7 +2,7 @@
 #include <LibRobus.h>
 #include <Structure/Motor.h>
 
-#define voltageNoir 4 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
+#define voltageNoir 4.5 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
 #define voltageCouleur 3 //Valeur située au-dessus du voltage pour le blanc, plus petit voltage entre jaune, rouge, bleu, vert.
 
 struct suiveurLigne{
@@ -18,8 +18,9 @@ struct suiveurLigne{
 
     void suivreLigneDroite()
     {
-
-        float voltage[3];
+        while(true)
+        {
+            float voltage[3];
         float encodeur_droit = 0,encodeur_gauche = 0;
         detection(voltage);
         Motor moteur;
@@ -35,14 +36,19 @@ struct suiveurLigne{
                 detection(voltage);
             }
             moteur.stopMotors();
+            //Si le premier capteur détecte un voltage associé à une couleur
+            if(voltage[0]>=voltageCouleur && voltage[0]<voltageNoir)
+            {
+                break; //Quitte la boucle
+            }
 
-            //Si le capteur central voit la ligne noire mais que les deux autre capteurs non
+            //Si le capteur central voit la ligne noire mais qu'un autre capteur non
             if(voltage[1]>=voltageNoir && (voltage[0]<voltageNoir || voltage[2]<voltageNoir)){
             
                 ENCODER_Reset(0);
                 ENCODER_Reset(1);
-                //Tourne à gauche jusqu'à ce qu'il trouve, pour un max de 90 degrés.
-                while((voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir) && encodeur_droit <= 269){
+                //Tourne à gauche jusqu'à ce qu'il trouve, pour un max de 30 degrés.
+                while((voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir) && encodeur_droit <= 90){
                 
                     moteur.angleTurn(-3); //Valeurs de ±3 peut-être à revoir, parfaitement arbitraire
                     detection(voltage);
@@ -53,10 +59,10 @@ struct suiveurLigne{
                 //Après le quart de tour à gauche, si pas trouvé la ligne, refait la même opération vers la droite.
                 if(voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir){
 
-                    moteur.angleTurn(90);
+                    moteur.angleTurn(30);
                     ENCODER_Reset(0);
                     ENCODER_Reset(1);
-                    while((voltage[0]<voltageNoir||voltage[1]<voltageNoir||voltage[2]<voltageNoir) && encodeur_gauche <= 269){ 
+                    while((voltage[0]<voltageNoir||voltage[1]<voltageNoir||voltage[2]<voltageNoir) && encodeur_gauche <= 90){ 
                     
                         moteur.angleTurn(3);
                         detection(voltage);
@@ -86,6 +92,6 @@ struct suiveurLigne{
                 }
                 moteur.stopMotors();
             }
+        }   
     };
-
 };
