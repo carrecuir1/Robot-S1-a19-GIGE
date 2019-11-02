@@ -21,10 +21,11 @@ struct suiveurLigne{
         while(true)
         {
             float voltage[3];
-        float encodeur_droit = 0,encodeur_gauche = 0;
-        detection(voltage);
-        Motor moteur;
-        moteur.resetPIDAndEncoder(0.2);
+            float encodeur_droit = 0,encodeur_gauche = 0;
+            detection(voltage);
+            Motor moteur;
+            moteur.resetPIDAndEncoder(0.2);
+            Serial.println("-----");
             Serial.println(voltage[0]);
             Serial.println(voltage[1]);
             Serial.println(voltage[2]);
@@ -55,6 +56,7 @@ struct suiveurLigne{
                     encodeur_droit+=ENCODER_Read(1);
                     delay(20);
                 }
+                encodeur_droit = 0;
                 moteur.stopMotors();
                 //Après le quart de tour à gauche, si pas trouvé la ligne, refait la même opération vers la droite.
                 if(voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir){
@@ -69,6 +71,7 @@ struct suiveurLigne{
                         encodeur_gauche+=ENCODER_Read(0);
                         delay(20);
                     }
+                    encodeur_gauche = 0;
                 }
                 moteur.stopMotors();
 
@@ -91,6 +94,39 @@ struct suiveurLigne{
                     delay(20);
                 }
                 moteur.stopMotors();
+            }
+
+            //Si aucun capteur ne voit la ligne noire
+            if(voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir){
+
+                ENCODER_Reset(0);
+                ENCODER_Reset(1);
+
+                while((voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir)||encodeur_droit <= 90){
+
+                    moteur.angleTurn(-3);
+                    detection(voltage);
+                    encodeur_droit+=ENCODER_Read(1);
+                    delay(20);
+                }
+                encodeur_droit = 0;
+                moteur.stopMotors();
+                if(voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir){
+        
+                    moteur.angleTurn(30);
+                    ENCODER_Reset(0);
+                    ENCODER_Reset(1);
+                    while((voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir)||encodeur_gauche <= 90){
+
+                        moteur.angleTurn(3);
+                        detection(voltage);
+                        encodeur_gauche+=ENCODER_Read(0);
+                        delay(20);
+                    }
+                    encodeur_gauche = 0;
+                }
+                if((voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir))
+                    break;
             }
         }   
     };
