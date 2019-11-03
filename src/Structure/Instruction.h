@@ -17,7 +17,9 @@ struct Instruction {
 
     //Fonction qui va contenir les instructions du robot A
     void warriorChallengeA(){
-       servo.openPliers();
+       servo.catchBall();
+       motor.uTurn(0.2);
+       motor.moveDistance(30, 0.2);
     }
 
     //Fonction qui va contenir les instructions du robot B

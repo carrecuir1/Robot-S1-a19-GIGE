@@ -2,8 +2,8 @@
 #include <LibRobus.h>
 #include <Structure/capteurIR.h>
 
-#define PinceOuverte 200
-#define PinceFermee 155
+#define PinceOuverte 180
+#define PinceFermee 145
 #define ServoPince 0
 
 struct Servo {
@@ -19,27 +19,28 @@ struct Servo {
     {
         SERVO_Enable(ServoPince);
         SERVO_SetAngle(ServoPince, PinceFermee);
-        delay(500);
-        SERVO_Disable(ServoPince);
+        /*delay(500);
+        SERVO_Disable(ServoPince);*/
     }
 
     void catchBall()
     {
         Motor motor;
         capteurIR capteur;
-        Serial.println("test\n");
-        while(!ROBUS_IsBumper(2))
+        
+        openPliers();
+
+        motor.moveWithPID(0.2);
+
+        while(capteur.getDistance() > 23)
         {
             Serial.println(capteur.getDistance());
-            if(capteur.getDistance() > 20)
-            {
-                motor.moveDistance(5, 0.3);
-            }
+            motor.checkPID();
+            delay(10);
         }
+
         Serial.println("fermeture");
         closePliers();
-
-        SERVO_Disable(ServoPince);
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
     }

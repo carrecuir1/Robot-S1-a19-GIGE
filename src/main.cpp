@@ -9,9 +9,6 @@ void setup() {
 void loop() {
   
   Instruction instruction = Instruction(consigne);
-  Servo servo;
-
-  //servo.openPliers();
 
   if(ROBUS_IsBumper(3)){
     instruction.warriorChallengeA();
