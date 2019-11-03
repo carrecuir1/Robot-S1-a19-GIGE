@@ -5,6 +5,7 @@
 struct capteurIR {
     capteurIR(){
     }
+    
     float getDistance()
     {
       int Vo = 0;
@@ -17,6 +18,6 @@ struct capteurIR {
       }
       return (distance / NB_MESURE);
     }
-}
+};
 
   

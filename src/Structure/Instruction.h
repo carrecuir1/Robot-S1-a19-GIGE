@@ -2,10 +2,13 @@
 #include <LibRobus.h>
 #include <Structure/PID.h>
 #include <Structure/Motor.h>
+#include <Structure/Servo.h>
+
 
 struct Instruction {
 
     Motor motor;
+    Servo servo;
     float speed;
     Instruction(float consigne){
         motor = Motor();
@@ -14,14 +17,12 @@ struct Instruction {
 
     //Fonction qui va contenir les instructions du robot A
     void warriorChallengeA(){
-        moveRobot(1);
-        delay(1000);
-        moveRobot(-1);
+       servo.openPliers();
     }
 
     //Fonction qui va contenir les instructions du robot B
     void warriorChallengeB(){
-
+        servo.closePliers();
     }
 
     //Fonction qui va faire avancer le robot
