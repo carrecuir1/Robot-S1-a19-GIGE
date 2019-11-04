@@ -12,7 +12,11 @@ struct Motor {
     PID pid;
 
     Motor(){
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> master
     }
     
     #pragma region TurnFunctions
