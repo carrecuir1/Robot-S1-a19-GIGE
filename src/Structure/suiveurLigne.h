@@ -2,8 +2,8 @@
 #include <LibRobus.h>
 #include <Structure/Motor.h>
 
-#define voltageNoir 4.5 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
-#define voltageCouleur 3 //Valeur située au-dessus du voltage pour le blanc, plus petit voltage entre jaune, rouge, bleu, vert.
+#define voltageNoir 4.0 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
+#define voltageCouleur 2.0 //Valeur située au-dessus du voltage pour le blanc, plus petit voltage entre jaune, rouge, bleu, vert.
 
 struct suiveurLigne{
     //Capteur avant sur port analogique 0, milieu sur 1, arrière sur 2.
@@ -17,117 +17,171 @@ struct suiveurLigne{
     }
 
     void suivreLigneDroite()
-    {
-        while(true)
-        {
+    {       //Voltage0 = gauche, 1 = centre, 2 = droite
             float voltage[3];
-            float encodeur_droit = 0,encodeur_gauche = 0;
+           //float encodeur_droit = 0,encodeur_gauche = 0;
+            int retour = 0;
             detection(voltage);
             Motor moteur;
             moteur.resetPIDAndEncoder(0.2);
+        while(retour !=1){
+
+            if(voltage[0] >= voltageNoir){
+            
+                moteur.move(0.2);
+            }
+            else{
+                
+                if(voltage[0]>=voltageNoir && voltage[1]<voltageNoir){
+                    
+                    //Tourner en avançant vers la gauche
+                }
+                else{
+
+                    if(voltage[2]>=voltageNoir && voltage[1]<voltageNoir){
+
+                        //Tourner en avançant vers la droite
+                    }
+                    else{
+                    
+                        retour = 1;
+                    }
+                    
+                }
+            }
+        }
+        moteur.stopMotors();
+            /*
+        while(retour != 1)
+        {
             Serial.println("-----");
             Serial.println(voltage[0]);
             Serial.println(voltage[1]);
             Serial.println(voltage[2]);
             //Si les trois capteurs voient la ligne noire
-            while(voltage[0]>=voltageNoir && voltage[1]>=voltageNoir && voltage[2]>=voltageNoir){
-            
+            if(voltage[0]>=voltageNoir && voltage[1]>=voltageNoir && voltage[2]>=voltageNoir){
+
+                Serial.println("les trois");
                 moteur.move(0.2); 
-                delay(20);
+                delay(50);
                 detection(voltage);
+                moteur.stopMotors();
             }
-            moteur.stopMotors();
-            //Si le premier capteur détecte un voltage associé à une couleur
-            if(voltage[0]>=voltageCouleur && voltage[0]<voltageNoir)
+            else
             {
-                break; //Quitte la boucle
-            }
-
-            //Si le capteur central voit la ligne noire mais qu'un autre capteur non
-            if(voltage[1]>=voltageNoir && (voltage[0]<voltageNoir || voltage[2]<voltageNoir)){
+                if(voltage[1]>=voltageNoir && (voltage[0]<voltageNoir || voltage[2]<voltageNoir)){
             
-                ENCODER_Reset(0);
-                ENCODER_Reset(1);
-                //Tourne à gauche jusqu'à ce qu'il trouve, pour un max de 30 degrés.
-                while((voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir) && encodeur_droit <= 90){
+                    ENCODER_Reset(0);
+                    ENCODER_Reset(1);
+                    Serial.println("capteur central voit ligne noire");
+                    //Tourne à gauche jusqu'à ce qu'il trouve, pour un max de 30 degrés.
+                    while(voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir){
+
+                        if(encodeur_droit>90)
+                            break;
                 
-                    moteur.angleTurn(-3); //Valeurs de ±3 peut-être à revoir, parfaitement arbitraire
-                    detection(voltage);
-                    encodeur_droit+=ENCODER_Read(1);
-                    delay(20);
-                }
-                encodeur_droit = 0;
-                moteur.stopMotors();
-                //Après le quart de tour à gauche, si pas trouvé la ligne, refait la même opération vers la droite.
-                if(voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir){
+                        moteur.angleTurn(-3); //Valeurs de ±3 peut-être à revoir, parfaitement arbitraire
+                        detection(voltage);
+                        encodeur_droit+=ENCODER_Read(1);
+                        delay(50);
+                    }
+                    encodeur_droit = 0;
+                    moteur.stopMotors();
+                    //Après le 30 degrés à gauche, si pas trouvé la ligne, refait la même opération vers la droite.
+                    if(voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir){
 
-                    moteur.angleTurn(30);
-                    ENCODER_Reset(0);
-                    ENCODER_Reset(1);
-                    while((voltage[0]<voltageNoir||voltage[1]<voltageNoir||voltage[2]<voltageNoir) && encodeur_gauche <= 90){ 
+                        moteur.angleTurn(30);
+                        ENCODER_Reset(0);
+                        ENCODER_Reset(1);
+                        while(voltage[0]<voltageNoir||voltage[1]<voltageNoir||voltage[2]<voltageNoir){ 
                     
-                        moteur.angleTurn(3);
-                        detection(voltage);
-                        encodeur_gauche+=ENCODER_Read(0);
-                        delay(20);
+                            if(encodeur_gauche>90)
+                                break;
+
+                            moteur.angleTurn(3);
+                            detection(voltage);
+                            encodeur_gauche+=ENCODER_Read(0);
+                            delay(50);
+                        }
+                        encodeur_gauche = 0;
                     }
-                    encodeur_gauche = 0;
+                    moteur.stopMotors();
+
                 }
-                moteur.stopMotors();
+                else
+                {
+                  //Si le capteur de l'avant voit la ligne noire mais que les deux autres capteurs non
+                  if(voltage[0]>=voltageNoir && voltage[2]<voltageNoir && voltage[1]<voltageNoir){
+                    Serial.println("capteur de l'avant voit ligne noire");
+                    moteur.move(0.2); //Avance jusqu'à ce que le capteur central voie la ligne noire.       
+                    while(voltage[1]<voltageNoir){
+                        delay(50);
+                        detection(voltage);
+                    }
+                    moteur.stopMotors();
+                  }
+                 else{
+                    //Si le capteur arrière voit la ligne noire mais que les deux autres capteurs non
+                    if(voltage[2]>=voltageNoir && voltage[1]<voltageNoir && voltage[0]<voltageNoir){
+                        Serial.println("Capteur arrière voit ligne noire");
+                        moteur.move(0.2); //Recule jusqu'à ce que le capteur central voie la ligne noire.
+                        while(voltage[1]<voltageNoir){
+                            detection(voltage);
+                            delay(50);
+                        }
+                        moteur.stopMotors();
+                    }
+                    else{
+                    
+                        //Si aucun capteur ne voit la ligne noire
+                        if(voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir){
+                            Serial.println("Aucun capteur voit ligne noire");
 
-            }
-            //Si le capteur de l'avant voit la ligne noire mais que les deux autres capteurs non
-            if(voltage[0]>=voltageNoir && voltage[2]<voltageNoir && voltage[1]<voltageNoir){
-                moteur.move(0.2); //Avance jusqu'à ce que le capteur central voie la ligne noire.       
-                while(voltage[1]<voltageNoir){
-                    delay(20);
-                    detection(voltage);
-                }
-                moteur.stopMotors();
-            }
+                            ENCODER_Reset(0);
+                            ENCODER_Reset(1);
 
-            //Si le capteur arrière voit la ligne noire mais que les deux autres capteurs non
-            if(voltage[2]>=voltageNoir && voltage[1]<voltageNoir && voltage[0]<voltageNoir){
-                moteur.move(0.2); //Recule jusqu'à ce que le capteur central voie la ligne noire.
-                while(voltage[1]<voltageNoir){
-                    detection(voltage);
-                    delay(20);
-                }
-                moteur.stopMotors();
-            }
+                            while(voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir){
 
-            //Si aucun capteur ne voit la ligne noire
-            if(voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir){
+                                if(encodeur_droit>90)
+                                    break;
 
-                ENCODER_Reset(0);
-                ENCODER_Reset(1);
-
-                while((voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir)||encodeur_droit <= 90){
-
-                    moteur.angleTurn(-3);
-                    detection(voltage);
-                    encodeur_droit+=ENCODER_Read(1);
-                    delay(20);
-                }
-                encodeur_droit = 0;
-                moteur.stopMotors();
-                if(voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir){
+                                moteur.angleTurn(-3);
+                                detection(voltage);
+                                encodeur_droit+=ENCODER_Read(1);
+                                delay(50);
+                            }
+                            encodeur_droit = 0;
+                            encodeur_gauche = 0;
+                            moteur.stopMotors();
+                            if(voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir){
         
-                    moteur.angleTurn(30);
-                    ENCODER_Reset(0);
-                    ENCODER_Reset(1);
-                    while((voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir)||encodeur_gauche <= 90){
+                                moteur.angleTurn(30);
+                                ENCODER_Reset(0);
+                                ENCODER_Reset(1);
+                                while(voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir){
 
-                        moteur.angleTurn(3);
-                        detection(voltage);
-                        encodeur_gauche+=ENCODER_Read(0);
-                        delay(20);
+                                    if(encodeur_gauche>90)
+                                        break;
+
+                                    moteur.angleTurn(3);
+                                    detection(voltage);
+                                    encodeur_gauche+=ENCODER_Read(0);
+                                    delay(50);
+                                }
+                                encodeur_gauche = 0;
+                            }
+                            if((voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir))
+                                retour = 1;
+                        }
                     }
-                    encodeur_gauche = 0;
+            
+
                 }
-                if((voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir))
-                    break;
-            }
-        }   
-    };
+            
+            } 
+        
+        }         
+    }*/
+                      
+  };
 };
