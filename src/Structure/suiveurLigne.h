@@ -2,7 +2,7 @@
 #include <LibRobus.h>
 #include <Structure/Motor.h>
 
-#define voltageNoir 4.5 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
+#define voltageNoir 2.8 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
 #define voltageCouleur 3 //Valeur située au-dessus du voltage pour le blanc, plus petit voltage entre jaune, rouge, bleu, vert.
 
 struct suiveurLigne{
@@ -10,15 +10,59 @@ struct suiveurLigne{
     float voltage[3];
 
     void detection(float voltage[3]){
-    
         voltage[0] = analogRead(0)*5.0/1023.0;
         voltage[1] = analogRead(1)*5.0/1023.0;
         voltage[2] = analogRead(2)*5.0/1023.0;
     }
 
+    void detecterLigne(){
+        Motor moteur;
+        moteur.move(0.2);
+        while(voltage[1]<voltageNoir){
+            detection(voltage);
+        }
+        moteur.stopMotors();
+    }
+
     void suivreLigneDroite()
     {
-        while(true)
+        float voltage[3];
+        float encodeur_droit = 0,encodeur_gauche = 0;
+        
+        Motor moteur;
+        while(!ROBUS_IsBumper(0) && !ROBUS_IsBumper(1) && !ROBUS_IsBumper(2)){
+            
+            if(voltage[1] <= voltageNoir){
+                moteur.move(0.2);
+            }
+            else{
+                
+                if(voltage[0]<=voltageNoir && voltage[1]>voltageNoir){
+                    moteur.turnMoving(-1,0.2, 0.02);
+                    //Tourner en avançant vers la gauche
+                }
+                else{
+
+                    if(voltage[2]<=voltageNoir && voltage[1]>voltageNoir){
+                        moteur.turnMoving(1,0.2 , 0.02);
+                        //Tourner en avançant vers la droite
+                    }
+                    
+                }
+            }
+            detection(voltage);
+            delay(100);            
+            
+            if(voltage[0]>=voltageNoir && voltage[1]>=voltageNoir && voltage[2]>=voltageNoir){
+                moteur.move(0.2);
+            }
+        }
+       
+       
+
+
+
+        /*while(true)
         {
             float voltage[3];
             float encodeur_droit = 0,encodeur_gauche = 0;
@@ -37,19 +81,14 @@ struct suiveurLigne{
                 detection(voltage);
             }
             moteur.stopMotors();
-            //Si le premier capteur détecte un voltage associé à une couleur
-            if(voltage[0]>=voltageCouleur && voltage[0]<voltageNoir)
-            {
-                break; //Quitte la boucle
-            }
-
+            
             //Si le capteur central voit la ligne noire mais qu'un autre capteur non
-            if(voltage[1]>=voltageNoir && (voltage[0]<voltageNoir || voltage[2]<voltageNoir)){
+            if(voltage[1]>=voltageNoir && voltage[0]<voltageNoir && voltage[2]<voltageNoir){
             
                 ENCODER_Reset(0);
                 ENCODER_Reset(1);
                 //Tourne à gauche jusqu'à ce qu'il trouve, pour un max de 30 degrés.
-                while((voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir) && encodeur_droit <= 90){
+                while(voltage[0]<voltageNoir || voltage[1]<voltageNoir || voltage[2]<voltageNoir){
                 
                     moteur.angleTurn(-3); //Valeurs de ±3 peut-être à revoir, parfaitement arbitraire
                     detection(voltage);
@@ -128,6 +167,6 @@ struct suiveurLigne{
                 if((voltage[0]<voltageNoir && voltage[1]<voltageNoir && voltage[2]<voltageNoir))
                     break;
             }
-        }   
+        }*/ 
     };
 };
