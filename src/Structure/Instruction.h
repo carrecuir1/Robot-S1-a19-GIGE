@@ -4,6 +4,13 @@
 
 struct Instruction {
 
+    typedef enum {
+        red,
+        yellow,
+        green,
+        blue
+    } color;
+
     Motor motor;
     float speed;
     Instruction(float consigne){
@@ -13,9 +20,26 @@ struct Instruction {
 
     //Fonction qui va contenir les instructions du robot A
     void warriorChallengeA(){
-        moveRobot(1);
-        delay(1000);
-        moveRobot(-1);
+        color valide = red;
+
+        switch (valide)
+        {
+        case red:
+            /* code */
+            break;
+        case yellow:
+            /* code */
+            break;
+        case green:
+            /* code */
+            break;
+        case blue:
+            /* code */
+            break;
+        default:
+            //Thomas Labbé estS le Martino
+            break;
+        }
     }
 
     //Fonction qui va contenir les instructions du robot B
@@ -33,4 +57,25 @@ struct Instruction {
         }
         motor.stopMotors();
     }
+
+    void redA(){
+        motor.angleTurn(-45);
+        motor.moveDistance(90,0.2);
+        motor.angleTurn(45);
+    }
+
+    void yellowA(){
+
+    }
+
+    void greenA(){
+
+    }
+    
+    void blueA(){
+
+        
+    }
+
+
 };

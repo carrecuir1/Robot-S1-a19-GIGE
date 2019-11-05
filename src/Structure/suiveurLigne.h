@@ -2,7 +2,7 @@
 #include <LibRobus.h>
 #include <Structure/Motor.h>
 
-#define voltageNoir 4.0 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
+#define voltageNoir 3.8 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
 #define voltageCouleur 2.0 //Valeur située au-dessus du voltage pour le blanc, plus petit voltage entre jaune, rouge, bleu, vert.
 
 struct suiveurLigne{
@@ -29,7 +29,13 @@ struct suiveurLigne{
         float voltage[3];
         float encodeur_droit = 0,encodeur_gauche = 0;
         
-        Motor moteur;
+        detection(voltage);
+
+        Serial.println(voltage[0]);
+        Serial.println(voltage[1]);
+        Serial.println(voltage[2]);
+
+        /*Motor moteur;
         while(!ROBUS_IsBumper(0) && !ROBUS_IsBumper(1) && !ROBUS_IsBumper(2)){
             
             if(voltage[1] <= voltageNoir){
@@ -56,6 +62,6 @@ struct suiveurLigne{
             if(voltage[0]>=voltageNoir && voltage[1]>=voltageNoir && voltage[2]>=voltageNoir){
                 moteur.move(0.2);
             }
-        }
+        }*/
     };
 };
