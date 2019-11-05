@@ -59,9 +59,7 @@ struct Instruction {
     }
 
     void redA(){
-        motor.angleTurn(-45);
-        motor.moveDistance(90,0.2);
-        motor.angleTurn(45);
+
     }
 
     void yellowA(){
@@ -73,6 +71,22 @@ struct Instruction {
     }
     
     void blueA(){
+  
+    }
+
+    void redB(){
+
+    }
+
+    void yellowB(){
+
+    }
+
+    void greenB(){
+
+    }
+    
+    void blueB(){
 
         
     }
