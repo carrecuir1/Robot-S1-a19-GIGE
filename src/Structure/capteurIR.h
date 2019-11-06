@@ -18,10 +18,6 @@ struct capteurIR {
       }
       return (distance / NB_MESURE);
     }
-<<<<<<< HEAD
 };
 
   
-=======
-}
->>>>>>> master

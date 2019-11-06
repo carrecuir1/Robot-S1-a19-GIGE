@@ -71,9 +71,9 @@ struct Instruction {
 
     void redA(){
         motor.moveDistance(15, 0.4);
-        moveOverCircle(17);
+        motor.moveOverCircle(17);
         motor.angleTurn(-45);
-        moveOverCircle(17);
+        motor.moveOverCircle(17);
     }
 
     void yellowA(){
@@ -81,9 +81,9 @@ struct Instruction {
 
     void greenA(){
         motor.moveDistance(15, 0.4);
-        moveOverCircle(17);
+        motor.moveOverCircle(17);
         motor.angleTurn(45);
-        moveOverCircle(17);
+        motor.moveOverCircle(17);
     }
     
     void blueA(){
@@ -100,14 +100,14 @@ struct Instruction {
         motor.angleTurn(90);
         motor.moveDistance(31, 0.4);
         motor.angleTurn(135);
-        moveOverCircle(31);
+        motor.moveOverCircle(31);
     }
 
     void yellowB(){
         motor.angleTurn(-45);
         motor.moveDistance(12, 0.4);
         motor.angleTurn(90);
-        moveOverCircle(31);
+        motor.moveOverCircle(31);
     }
 
     void greenB(){
@@ -115,14 +115,14 @@ struct Instruction {
         motor.moveDistance(15, 0.4);
         motor.angleTurn(-90);
         motor.moveDistance(31, 0.4);
-        moveOverCircle(31);
+        motor.moveOverCircle(31);
     }
     
     void blueB(){
         motor.angleTurn(45);
         motor.moveDistance(12, 0.4);
         motor.angleTurn(-90);  
-        moveOverCircle(31);
+        motor.moveOverCircle(31);
         
     }
 
