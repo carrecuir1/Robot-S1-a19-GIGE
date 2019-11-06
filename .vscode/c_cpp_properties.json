@@ -6,63 +6,33 @@
         {
             "name": "Win32",
             "includePath": [
-<<<<<<< HEAD
-                "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/include",
-                "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/src",
-                "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/lib/LibRobUS/src",
-                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
-                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
-                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
-                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/cores/arduino",
-                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/variants/mega",
-                "C:/Users/maxen/.platformio/lib/Adafruit TCS34725_ID665",
-                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
-                "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
-                "C:/Users/maxen/.platformio/packages/tool-unity",
-=======
-                "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/include",
-                "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/src",
-                "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/lib/LibRobUS/src",
-                "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
-                "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
-                "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
-                "C:/Users/Martin/.platformio/packages/framework-arduinoavr/cores/arduino",
-                "C:/Users/Martin/.platformio/packages/framework-arduinoavr/variants/mega",
-                "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
-                "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
-                "C:/Users/Martin/.platformio/packages/tool-unity",
->>>>>>> master
+                "u:/Projet s1/Robot-S1-a19-GIGE/include",
+                "u:/Projet s1/Robot-S1-a19-GIGE/src",
+                "u:/Projet s1/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/cores/arduino",
+                "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/variants/mega",
+                "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                "C:/Users/garn1403/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-<<<<<<< HEAD
-                    "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/include",
-                    "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/src",
-                    "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/lib/LibRobUS/src",
-                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
-                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
-                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
-                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/cores/arduino",
-                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/variants/mega",
-                    "C:/Users/maxen/.platformio/lib/Adafruit TCS34725_ID665",
-                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
-                    "C:/Users/maxen/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
-                    "C:/Users/maxen/.platformio/packages/tool-unity",
-=======
-                    "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/include",
-                    "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/src",
-                    "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/lib/LibRobUS/src",
-                    "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
-                    "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
-                    "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
-                    "C:/Users/Martin/.platformio/packages/framework-arduinoavr/cores/arduino",
-                    "C:/Users/Martin/.platformio/packages/framework-arduinoavr/variants/mega",
-                    "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
-                    "C:/Users/Martin/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
-                    "C:/Users/Martin/.platformio/packages/tool-unity",
->>>>>>> master
+                    "u:/Projet s1/Robot-S1-a19-GIGE/include",
+                    "u:/Projet s1/Robot-S1-a19-GIGE/src",
+                    "u:/Projet s1/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                    "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                    "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                    "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                    "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/cores/arduino",
+                    "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/variants/mega",
+                    "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                    "C:/Users/garn1403/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                    "C:/Users/garn1403/.platformio/packages/tool-unity",
                     ""
                 ]
             },
@@ -78,11 +48,7 @@
             "intelliSenseMode": "clang-x64",
             "cStandard": "c11",
             "cppStandard": "c++11",
-<<<<<<< HEAD
-            "compilerPath": "\"C:/Users/maxen/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe\" -mmcu=atmega2560"
-=======
-            "compilerPath": "\"C:/Users/Martin/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe\" -mmcu=atmega2560"
->>>>>>> master
+            "compilerPath": "\"C:/Users/garn1403/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe\" -mmcu=atmega2560"
         }
     ],
     "version": 4

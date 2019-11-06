@@ -12,13 +12,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-<<<<<<< HEAD
-            "executable": "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/.pio/build/megaatmega2560/firmware.elf",
-            "toolchainBinDir": "C:/Users/maxen/.platformio/packages/toolchain-atmelavr/bin",
-=======
-            "executable": "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/.pio/build/megaatmega2560/firmware.elf",
-            "toolchainBinDir": "C:/Users/Martin/.platformio/packages/toolchain-atmelavr/bin",
->>>>>>> master
+            "executable": "u:/Projet s1/Robot-S1-a19-GIGE/.pio/build/megaatmega2560/firmware.elf",
+            "toolchainBinDir": "C:/Users/garn1403/.platformio/packages/toolchain-atmelavr/bin",
             "preLaunchTask": {
                 "type": "PlatformIO",
                 "task": "Pre-Debug"
@@ -29,13 +24,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-<<<<<<< HEAD
-            "executable": "c:/Users/maxen/OneDrive/Bureau/Etude/Projet/Robot-S1-a19-GIGE/.pio/build/megaatmega2560/firmware.elf",
-            "toolchainBinDir": "C:/Users/maxen/.platformio/packages/toolchain-atmelavr/bin",
-=======
-            "executable": "c:/Users/Martin/Documents/Uni/S1/Projet/code/Robot-S1-a19-GIGE-testSuiveurLigne/Robot-S1-a19-GIGE/.pio/build/megaatmega2560/firmware.elf",
-            "toolchainBinDir": "C:/Users/Martin/.platformio/packages/toolchain-atmelavr/bin",
->>>>>>> master
+            "executable": "u:/Projet s1/Robot-S1-a19-GIGE/.pio/build/megaatmega2560/firmware.elf",
+            "toolchainBinDir": "C:/Users/garn1403/.platformio/packages/toolchain-atmelavr/bin",
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]
