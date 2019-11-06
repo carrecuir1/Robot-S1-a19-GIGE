@@ -6,7 +6,6 @@ void setup() {
 }
 
 void loop() {
-<<<<<<< HEAD
   
   Instruction instruction = Instruction(consigne);
 
@@ -16,13 +15,5 @@ void loop() {
   if(ROBUS_IsBumper(1)){
     instruction.warriorChallengeB();
   }
-=======
-     suiveurLigne follow;
-     // follow.suivreLigneDroite();
-     if(ROBUS_IsBumper(3))
-     {
-       follow.suivreLigneDroite();
-     }
->>>>>>> master
 }
 

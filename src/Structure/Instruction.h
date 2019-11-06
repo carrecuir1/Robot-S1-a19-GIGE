@@ -23,14 +23,10 @@ struct Instruction {
 
     //Fonction qui va contenir les instructions du robot A
     void warriorChallengeA(){
-<<<<<<< HEAD
         //motor.findColor('A', BLUE);
         //motor.moveDistance(30, 0.3);
         servo.catchBall();
-=======
-<<<<<<< HEAD
         motor.findColor('A', YELLOW);
-=======
         color valide = red;
 
         switch (valide)
@@ -48,15 +44,12 @@ struct Instruction {
             blueA();
             break;
         }
->>>>>>> de26fb4dc22ac430d89c22220a525c027b2a4f94
->>>>>>> master
     }
 
     //Fonction qui va contenir les instructions du robot B
     void warriorChallengeB(){
-<<<<<<< HEAD
+
         servo.closePliers();
-=======
         color valide = red;
         
         switch (valide)
@@ -75,8 +68,7 @@ struct Instruction {
             break;
         }
     }
->>>>>>> master
-    }
+
 
     //Fonction qui va faire avancer le robot
     void moveRobot(int8_t direction){

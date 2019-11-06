@@ -137,10 +137,7 @@ struct Motor {
                 moveOverCircle(17);
                 motor.angleTurn(-45);
                 moveOverCircle(17);
-<<<<<<< HEAD
-=======
                 //SUIVRE LIGNE
->>>>>>> master
                 break;
 
             case GREEN:
@@ -148,30 +145,14 @@ struct Motor {
                 moveOverCircle(17);
                 motor.angleTurn(45);
                 moveOverCircle(17);
-<<<<<<< HEAD
-=======
-                //SUIVRE LIGNE
->>>>>>> master
                 break;
 
              case BLUE:
                 motor.angleTurn(45);
                 motor.moveDistance(12, 0.4);
                 motor.angleTurn(95);
-<<<<<<< HEAD
-=======
-                //SUIVRE LIGNE
->>>>>>> master
-                break;
-
-            case YELLOW:
-                motor.angleTurn(-45);
                 motor.moveDistance(10, 0.4);
                 motor.angleTurn(-95);
-<<<<<<< HEAD
-=======
-                //SUIVRE LIGNE
->>>>>>> master
                 break;
             default:
                 break;
@@ -185,26 +166,14 @@ struct Motor {
                 motor.angleTurn(45);
                 motor.moveDistance(12, 0.4);
                 motor.angleTurn(-90);  
-<<<<<<< HEAD
                 moveOverCircle(31);
-=======
-                //SUIVRE LIGNE
-                moveOverCircle(31);
-                //SUIVRE LIGNE
->>>>>>> master
                 break;
 
             case YELLOW:
                 motor.angleTurn(-45);
                 motor.moveDistance(12, 0.4);
                 motor.angleTurn(90);
-<<<<<<< HEAD
                 moveOverCircle(31);
-=======
-                //SUIVRE LIGNE
-                moveOverCircle(31);
-                //SUIVRE LIGNE
->>>>>>> master
                 break;
 
              case RED:
@@ -213,13 +182,7 @@ struct Motor {
                 motor.angleTurn(90);
                 motor.moveDistance(31, 0.4);
                 motor.angleTurn(135);
-<<<<<<< HEAD
                 moveOverCircle(31);
-=======
-                //SUIVRE LIGNE
-                moveOverCircle(31);
-                //SUIVRE LIGNE
->>>>>>> master
                 break;
 
             case GREEN:
@@ -227,13 +190,7 @@ struct Motor {
                 motor.moveDistance(15, 0.4);
                 motor.angleTurn(-90);
                 motor.moveDistance(31, 0.4);
-<<<<<<< HEAD
                 moveOverCircle(31);
-=======
-                //SUIVRE LIGNE
-                moveOverCircle(31);
-                //SUIVRE LIGNE
->>>>>>> master
                 break;
                 
             default:
@@ -246,8 +203,6 @@ struct Motor {
         }
         
     }
-<<<<<<< HEAD
-=======
 
     //Tourne tout en avancant
     void turnMoving(int8_t direction, float speed, float speedReduc){
@@ -261,7 +216,6 @@ struct Motor {
         }
 
     }
->>>>>>> master
 
     //Va reset le pid et les encodeurs
     void resetPIDAndEncoder(float consigne){
