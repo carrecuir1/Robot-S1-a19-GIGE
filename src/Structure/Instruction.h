@@ -25,26 +25,40 @@ struct Instruction {
         switch (valide)
         {
         case red:
-            /* code */
+            redA();
             break;
         case yellow:
-            /* code */
+            yellowA();
             break;
         case green:
-            /* code */
+            greenA();
             break;
         case blue:
-            /* code */
-            break;
-        default:
-            //Thomas Labbé estS le Martino
+            blueA();
             break;
         }
     }
 
     //Fonction qui va contenir les instructions du robot B
     void warriorChallengeB(){
-
+        color valide = red;
+        
+        switch (valide)
+        {
+        case red:
+            redB();
+            break;
+        case yellow:
+            yellowB();
+            break;
+        case green:
+            greenB();
+            break;
+        case blue:
+            blueB();
+            break;
+        }
+    }
     }
 
     //Fonction qui va faire avancer le robot
@@ -59,7 +73,7 @@ struct Instruction {
     }
 
     void redA(){
-
+        
     }
 
     void yellowA(){
