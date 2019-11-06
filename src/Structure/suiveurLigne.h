@@ -28,33 +28,67 @@ struct suiveurLigne{
             moteur.move(0.2);
         while(retour !=1){
             Serial.println("test");
-
-            if(voltage[1] >= voltageNoirM || (voltage[1]<voltageNoirM && voltage[0]<voltageNoirG && voltage[2]<voltageNoirD)){
-            
-                moteur.move(0.2);
-            }
-            else{
                 
-                if(voltage[0]>=voltageNoirG){
-                    
-                    moteur.turnMoving(1, 0.2, 0.1);
+                if(voltage[0]>=voltageNoirG && voltage[1]<voltageNoirM && voltage[2]<voltageNoirD){
+                    MOTOR_SetSpeed(0, 0.05);
+                    MOTOR_SetSpeed(1,0.2);
+                    while(voltage[0]>=voltageNoirG && voltage[1]<voltageNoirM && voltage[2]<voltageNoirD){
+                        delay(50);
+                        detection(voltage);
+                    }
+                    moteur.stopMotors();
+                    delay(50);
                 }
                 else{
 
-                    if(voltage[2]>=voltageNoirD){
-
-                        moteur.turnMoving(-1, 0.2, 0.1);
+                    if(voltage[2]>=voltageNoirD && voltage[0]<voltageNoirG && voltage[1]<voltageNoirM){
+                        MOTOR_SetSpeed(0, 0.2);
+                        MOTOR_SetSpeed(1, 0.05);
+                        while(voltage[2]>=voltageNoirD && voltage[1]<voltageNoirM && voltage[0]<voltageNoirG){
+                            delay(50);
+                            detection(voltage);
+                        }
+                        moteur.stopMotors();
+                        delay(50);
                     }
                     else{
-                    
-                        moteur.move(0.2);
+                        if(voltage[0]>=voltageNoirG && voltage[1]>=voltageNoirM && voltage[2]<voltageNoirD){
+                            MOTOR_SetSpeed(0, 0.05);
+                            MOTOR_SetSpeed(1,0.2);
+                            while(voltage[0]>=voltageNoirG && voltage[1]>=voltageNoirM && voltage[2]<voltageNoirD){
+                                delay(50);
+                                detection(voltage);
+                            }
+                            moteur.stopMotors();
+                            delay(50);
+                        }
+                        else{
+                            if(voltage[0]<voltageNoirG && voltage[1]>=voltageNoirM && voltage[2]>=voltageNoirD){
+                                MOTOR_SetSpeed(0, 0.2);
+                                MOTOR_SetSpeed(1, 0.05);
+                                while(voltage[2]>=voltageNoirD && voltage[1]>=voltageNoirM && voltage[0]<voltageNoirG){
+                                    delay(50);
+                                    detection(voltage);
+                                }
+                                moteur.stopMotors();
+                                delay(50);
+                            }
+                            else{
+                                if(voltage[0]>=voltageNoirG && voltage[1]>=voltageNoirM && voltage[2]>=voltageNoirD){
+                                    moteur.angleTurn(1);
+                                }
+                                else
+                                    moteur.move(0.2);
+                            }
+                        }
                     }
-                    
                 }
+                 detection(voltage);
             }
-            detection(voltage);
-        }
-        moteur.stopMotors();
+            moteur.stopMotors();
+        };
+    
+
             /*
         while(retour != 1)
         {
@@ -188,4 +222,3 @@ struct suiveurLigne{
     }*/
                       
   };
-};
