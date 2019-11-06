@@ -123,6 +123,8 @@ struct Motor {
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
     }
+
+    //REMOVE
     void findColor(char robotName, int color)
     {
         Motor motor;

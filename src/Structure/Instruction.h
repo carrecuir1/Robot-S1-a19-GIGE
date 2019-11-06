@@ -23,10 +23,6 @@ struct Instruction {
 
     //Fonction qui va contenir les instructions du robot A
     void warriorChallengeA(){
-        //motor.findColor('A', BLUE);
-        //motor.moveDistance(30, 0.3);
-        servo.catchBall();
-        motor.findColor('A', YELLOW);
         color valide = red;
 
         switch (valide)
@@ -44,12 +40,13 @@ struct Instruction {
             blueA();
             break;
         }
+        motor.moveDistance(30, 0.3);
+        servo.catchBall();
+        motor.findColor('A', YELLOW);
     }
 
     //Fonction qui va contenir les instructions du robot B
     void warriorChallengeB(){
-
-        servo.closePliers();
         color valide = red;
         
         switch (valide)
@@ -67,50 +64,65 @@ struct Instruction {
             blueB();
             break;
         }
-    }
-
-
-    //Fonction qui va faire avancer le robot
-    void moveRobot(int8_t direction){
-        float speedWithDirection = speed*direction;
-        motor.resetPIDAndEncoder(speedWithDirection);
-        while(!ROBUS_IsBumper(2) and !ROBUS_IsBumper(1) and !ROBUS_IsBumper(0)){
-            motor.move(speedWithDirection);
-            delay(10);
-        }
-        motor.stopMotors();
+        motor.moveDistance(30, 0.3);
+        servo.catchBall();
+        motor.findColor('A', YELLOW);
     }
 
     void redA(){
-        
+        motor.moveDistance(15, 0.4);
+        moveOverCircle(17);
+        motor.angleTurn(-45);
+        moveOverCircle(17);
     }
 
     void yellowA(){
-
     }
 
     void greenA(){
-
+        motor.moveDistance(15, 0.4);
+        moveOverCircle(17);
+        motor.angleTurn(45);
+        moveOverCircle(17);
     }
     
     void blueA(){
-  
+        motor.angleTurn(45);
+        motor.moveDistance(12, 0.4);
+        motor.angleTurn(95);
+        motor.moveDistance(10, 0.4);
+        motor.angleTurn(-95);
     }
 
     void redB(){
-
+        motor.angleTurn(-90);
+        motor.moveDistance(15, 0.4);
+        motor.angleTurn(90);
+        motor.moveDistance(31, 0.4);
+        motor.angleTurn(135);
+        moveOverCircle(31);
     }
 
     void yellowB(){
-
+        motor.angleTurn(-45);
+        motor.moveDistance(12, 0.4);
+        motor.angleTurn(90);
+        moveOverCircle(31);
     }
 
     void greenB(){
-
+        motor.angleTurn(90);
+        motor.moveDistance(15, 0.4);
+        motor.angleTurn(-90);
+        motor.moveDistance(31, 0.4);
+        moveOverCircle(31);
     }
     
     void blueB(){
-
+        motor.angleTurn(45);
+        motor.moveDistance(12, 0.4);
+        motor.angleTurn(-90);  
+        moveOverCircle(31);
         
     }
 
