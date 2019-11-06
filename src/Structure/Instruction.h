@@ -73,37 +73,83 @@ struct Instruction {
     }
 
     void redA(){
-        
+        //TODO LIST
+        //Move center
+        //Turn 45° vers la gauche
+        //Bouge en ligne droite en sortant du cercle
+        //Rendu au but, il prend le balon
+        //UTurn
+        //Va le porter au cercle
     }
 
     void yellowA(){
-
+        //TODO LIST
+        //Turn 90° vers la gauche
+        //Bouge en ligne droite en sortant du cercle
+        //Rendu au but, il prend le balon
+        //UTurn
+        //Va le porter au cercle
     }
 
     void greenA(){
-
+        //TODO LIST
+        //Move center
+        //Turn 45° vers la gauche
+        //Bouge en ligne droite en sortant du cercle
+        //Rendu au but, il prend le balon
+        //UTurn
+        //Va le porter au cercle
     }
     
     void blueA(){
-  
+        //TODO LIST
+        //Move center
+        //Turn 45° vers la gauche
+        //Bouge en ligne droite en sortant du cercle
+        //Rendu au but, il prend le balon
+        //UTurn
+        //Va le porter au cercle
     }
 
     void redB(){
-
+        //TODO LIST
+        //Move center
+        //Turn 45° vers la gauche
+        //Bouge en ligne droite en sortant du cercle
+        //Rendu au but, il prend le balon
+        //UTurn
+        //Va le porter au cercle
     }
 
     void yellowB(){
-
+        //TODO LIST
+        //Move center
+        //Turn 45° vers la gauche
+        //Bouge en ligne droite en sortant du cercle
+        //Rendu au but, il prend le balon
+        //UTurn
+        //Va le porter au cercle
     }
 
     void greenB(){
-
+        //TODO LIST
+        //Move center
+        //Turn 45° vers la gauche
+        //Bouge en ligne droite en sortant du cercle
+        //Rendu au but, il prend le balon
+        //UTurn
+        //Va le porter au cercle
     }
     
     void blueB(){
-
+        //TODO LIST
+        //Move center
+        //Turn 45° vers la gauche
+        //Bouge en ligne droite en sortant du cercle
+        //Rendu au but, il prend le balon
+        //UTurn
+        //Va le porter au cercle
         
     }
-
 
 };
