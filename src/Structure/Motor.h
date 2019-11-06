@@ -2,7 +2,6 @@
 #include <LibRobus.h>
 #include <Structure/PID.h>
 
-
 //chiffre doit terminer par ".0" à cause du float
 #define circumference 1168.672467
 #define distancePulse 0.074809175064
@@ -37,6 +36,17 @@ struct Motor {
         MOTOR_SetSpeed(selectMotor,0);
     }
 
+    void turn(int8_t direction){
+        if(direction < 0){
+            MOTOR_SetSpeed(0,0.2);
+            MOTOR_SetSpeed(1,0);
+        }
+        else{
+            MOTOR_SetSpeed(0,1);
+            MOTOR_SetSpeed(1,0.2);
+        }
+    }
+
     //Fonction qui permet de faire un u-turn avec les deux moteurs
     void uTurn(float speed)
     {
@@ -60,35 +70,12 @@ struct Motor {
 
     }
    
-    void turn(int8_t direction){
-        if(direction < 0){
-            MOTOR_SetSpeed(0,0.2);
-            MOTOR_SetSpeed(1,0);
-        }
-        else{
-            MOTOR_SetSpeed(0,1);
-            MOTOR_SetSpeed(1,0.2);
-        }
-    }
     #pragma endregion TurnFunctions
 
     //Le robot avance pendant un temps indéfini
     void move(float speed){
         MOTOR_SetSpeed(1, speed);
-        MOTOR_SetSpeed(0, speed);
-
-    }
-
-    //Tourne tout en avancant
-    void turnMoving(int8_t direction, float speed, float speedReduc){
-        //tourne à gauche
-        if(direction < 0){
-            MOTOR_SetSpeed(0, speed + 0.02);
-            MOTOR_SetSpeed(1, speed - speedReduc);
-        }else{
-            MOTOR_SetSpeed(0, speed - speedReduc);
-            MOTOR_SetSpeed(1, speed + 0.02);
-        }
+        checkPID();
 
     }
     
@@ -110,6 +97,19 @@ struct Motor {
 
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
+    }
+
+    //Tourne tout en avancant
+    void turnMoving(int8_t direction, float speed, float speedReduc){
+        //tourne à gauche
+        if(direction < 0){
+            MOTOR_SetSpeed(0, speed + 0.02);
+            MOTOR_SetSpeed(1, speed - speedReduc);
+        }else{
+            MOTOR_SetSpeed(0, speed - speedReduc);
+            MOTOR_SetSpeed(1, speed + 0.02);
+        }
+
     }
 
     //Va reset le pid et les encodeurs
