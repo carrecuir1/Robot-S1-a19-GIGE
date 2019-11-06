@@ -2,8 +2,8 @@
 #include <LibRobus.h>
 #include <Structure/capteurIR.h>
 
-#define PinceOuverte 180
-#define PinceFermee 145
+#define PinceOuverte 150
+#define PinceFermee 90
 #define ServoPince 0
 
 struct Servo {
@@ -31,7 +31,7 @@ struct Servo {
         openPliers();
 
         motor.moveWithPID(0.2);
-
+        Serial.println(capteur.getDistance());
         while(capteur.getDistance() > 23)
         {
             Serial.println(capteur.getDistance());
