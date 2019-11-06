@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <LibRobus.h>
+#include <Structure/PID.h>
 
 //chiffre doit terminer par ".0" à cause du float
 #define circumference 1168.672467
@@ -37,6 +38,17 @@ struct Motor {
         }
 
         MOTOR_SetSpeed(selectMotor,0);
+    }
+
+    void turn(int8_t direction){
+        if(direction < 0){
+            MOTOR_SetSpeed(0,0.2);
+            MOTOR_SetSpeed(1,0);
+        }
+        else{
+            MOTOR_SetSpeed(0,1);
+            MOTOR_SetSpeed(1,0.2);
+        }
     }
 
     //Fonction qui permet de faire un u-turn avec les deux moteurs
@@ -125,6 +137,10 @@ struct Motor {
                 moveOverCircle(17);
                 motor.angleTurn(-45);
                 moveOverCircle(17);
+<<<<<<< HEAD
+=======
+                //SUIVRE LIGNE
+>>>>>>> master
                 break;
 
             case GREEN:
@@ -132,18 +148,30 @@ struct Motor {
                 moveOverCircle(17);
                 motor.angleTurn(45);
                 moveOverCircle(17);
+<<<<<<< HEAD
+=======
+                //SUIVRE LIGNE
+>>>>>>> master
                 break;
 
              case BLUE:
                 motor.angleTurn(45);
                 motor.moveDistance(12, 0.4);
                 motor.angleTurn(95);
+<<<<<<< HEAD
+=======
+                //SUIVRE LIGNE
+>>>>>>> master
                 break;
 
             case YELLOW:
                 motor.angleTurn(-45);
                 motor.moveDistance(10, 0.4);
                 motor.angleTurn(-95);
+<<<<<<< HEAD
+=======
+                //SUIVRE LIGNE
+>>>>>>> master
                 break;
             default:
                 break;
@@ -157,14 +185,26 @@ struct Motor {
                 motor.angleTurn(45);
                 motor.moveDistance(12, 0.4);
                 motor.angleTurn(-90);  
+<<<<<<< HEAD
                 moveOverCircle(31);
+=======
+                //SUIVRE LIGNE
+                moveOverCircle(31);
+                //SUIVRE LIGNE
+>>>>>>> master
                 break;
 
             case YELLOW:
                 motor.angleTurn(-45);
                 motor.moveDistance(12, 0.4);
                 motor.angleTurn(90);
+<<<<<<< HEAD
                 moveOverCircle(31);
+=======
+                //SUIVRE LIGNE
+                moveOverCircle(31);
+                //SUIVRE LIGNE
+>>>>>>> master
                 break;
 
              case RED:
@@ -173,7 +213,13 @@ struct Motor {
                 motor.angleTurn(90);
                 motor.moveDistance(31, 0.4);
                 motor.angleTurn(135);
+<<<<<<< HEAD
                 moveOverCircle(31);
+=======
+                //SUIVRE LIGNE
+                moveOverCircle(31);
+                //SUIVRE LIGNE
+>>>>>>> master
                 break;
 
             case GREEN:
@@ -181,7 +227,13 @@ struct Motor {
                 motor.moveDistance(15, 0.4);
                 motor.angleTurn(-90);
                 motor.moveDistance(31, 0.4);
+<<<<<<< HEAD
                 moveOverCircle(31);
+=======
+                //SUIVRE LIGNE
+                moveOverCircle(31);
+                //SUIVRE LIGNE
+>>>>>>> master
                 break;
                 
             default:
@@ -194,6 +246,22 @@ struct Motor {
         }
         
     }
+<<<<<<< HEAD
+=======
+
+    //Tourne tout en avancant
+    void turnMoving(int8_t direction, float speed, float speedReduc){
+        //tourne à gauche
+        if(direction < 0){
+            MOTOR_SetSpeed(0, speed + 0.02);
+            MOTOR_SetSpeed(1, speed - speedReduc);
+        }else{
+            MOTOR_SetSpeed(0, speed - speedReduc);
+            MOTOR_SetSpeed(1, speed + 0.02);
+        }
+
+    }
+>>>>>>> master
 
     //Va reset le pid et les encodeurs
     void resetPIDAndEncoder(float consigne){

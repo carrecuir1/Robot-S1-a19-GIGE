@@ -1,12 +1,12 @@
 #include <main.h>
 
-#define consigne 0.35
 void setup() {
   BoardInit();
   SERVO_Disable(0);
 }
 
 void loop() {
+<<<<<<< HEAD
   
   Instruction instruction = Instruction(consigne);
 
@@ -16,5 +16,13 @@ void loop() {
   if(ROBUS_IsBumper(1)){
     instruction.warriorChallengeB();
   }
+=======
+     suiveurLigne follow;
+     // follow.suivreLigneDroite();
+     if(ROBUS_IsBumper(3))
+     {
+       follow.suivreLigneDroite();
+     }
+>>>>>>> master
 }
 
