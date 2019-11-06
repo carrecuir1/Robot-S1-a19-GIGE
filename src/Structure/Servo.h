@@ -1,6 +1,9 @@
 #include <Arduino.h>
 #include <LibRobus.h>
+
+#ifndef CAPTEURIR_H
 #include <Structure/capteurIR.h>
+#endif
 
 #define PinceOuverte 150
 #define PinceFermee 90
@@ -31,7 +34,7 @@ struct Servo {
         openPliers();
 
         motor.moveWithPID(0.2);
-        Serial.println(capteur.getDistance());
+        //Serial.println(capteur.getDistance());
         while(capteur.getDistance() > 23)
         {
             Serial.println(capteur.getDistance());
@@ -39,7 +42,7 @@ struct Servo {
             delay(10);
         }
 
-        Serial.println("fermeture");
+        //Serial.println("fermeture");
         closePliers();
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);

@@ -2,7 +2,8 @@
 #include <LibRobus.h>
 #include <Structure/Motor.h>
 #include <Structure/Servo.h>
-
+#include <Structure/suiveurLigne.h>
+#include <Structure/capteurIR.h>
 
 struct Instruction {
 
@@ -15,15 +16,24 @@ struct Instruction {
 
     Motor motor;
     Servo servo;
+    suiveurLigne suiveurligne;
+    //
+    capteurIR capteurir;
+    //
     float speed;
     Instruction(float consigne){
         motor = Motor();
         speed = consigne;
     }
 
+    void testIR(){
+        float dist;
+        dist = capteurir.getDistance();
+        Serial.println(dist);
+    }
     //Fonction qui va contenir les instructions du robot A
     void warriorChallengeA(){
-        color valide = red;
+        color valide = yellow;
 
         switch (valide)
         {
@@ -40,9 +50,15 @@ struct Instruction {
             blueA();
             break;
         }
-        motor.moveDistance(30, 0.3);
+        //suiveurligne.suivreLigneDroite();        
         servo.catchBall();
-        motor.findColor('A', YELLOW);
+        motor.uTurn(0.2);
+        motor.moveDistance(88,0.2);
+        servo.openPliers();
+        motor.moveDistance(10,-0.2);
+        motor.angleTurn(90);
+        motor.moveDistance(60,0.3);
+
     }
 
     //Fonction qui va contenir les instructions du robot B
@@ -64,9 +80,8 @@ struct Instruction {
             blueB();
             break;
         }
-        motor.moveDistance(30, 0.3);
+        //motor.moveDistance(30, 0.3);
         servo.catchBall();
-        motor.findColor('A', YELLOW);
     }
 
     void redA(){
@@ -77,6 +92,13 @@ struct Instruction {
     }
 
     void yellowA(){
+        motor.angleTurn(-45);
+
+        motor.moveDistance(11, 0.4);
+        //motor.moveDistance(12, 0.4);
+        motor.angleTurn(-97);
+        //motor.moveDistance(10, 0.4); //mettre suiveurligne
+        
     }
 
     void greenA(){

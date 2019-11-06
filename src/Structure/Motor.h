@@ -88,6 +88,7 @@ struct Motor {
         MOTOR_SetSpeed(1, speed);
         checkPID();
     }
+
     //Fonction qui avance sur une certaine distance
     //Mettre un chiffre négatif ou positif pour la direction (-1, 1)
     void moveDistance(float distance, float speed)
@@ -97,12 +98,22 @@ struct Motor {
         resetPIDAndEncoder(speed);
 
         MOTOR_SetSpeed(1, speed);
-        do
-        {
-            checkPID();
-            distanceRight = (diameter * ENCODER_Read(1))/3200;
+
+        if(speed > 0){
+            do
+            {
+                checkPID();
+                distanceRight = (diameter * ENCODER_Read(1))/3200;
+            }
+            while(distanceRight < distance);
+        }else if(speed <0){
+            do
+            {
+                checkPID();
+                distanceRight = (diameter * ENCODER_Read(1))/3200;
+            }
+            while(distanceRight > distance*-1);
         }
-        while(distanceRight < distance);
 
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
