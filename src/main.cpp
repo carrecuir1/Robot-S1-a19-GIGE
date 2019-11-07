@@ -10,10 +10,10 @@ void loop() {
   Instruction instruction = Instruction(consigne);
 
   if(ROBUS_IsBumper(3)){
+    //ndelay(60000);
     instruction.warriorChallengeA();
+
   }
-  if(ROBUS_IsBumper(1)){
-    instruction.warriorChallengeB();
-  }
+  
 }
 

@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 #include <Structure/Motor.h>
+#include <Structure/capteurIR.h>
 
 #define voltageNoirM 4.60 //Valeur de tension associable à une couleur noire captée par le capteur, un peu arbitraire.
 #define voltageNoirD 4.40
@@ -12,21 +13,20 @@ struct suiveurLigne{
 
     void detection(float voltage[3]){
     
-        voltage[0] = analogRead(0)*5.0/1023.0;
-        voltage[1] = analogRead(1)*5.0/1023.0;
-        voltage[2] = analogRead(2)*5.0/1023.0;
+        voltage[0] = analogRead(4)*5.0/1023.0;
+        voltage[1] = analogRead(5)*5.0/1023.0;
+        voltage[2] = analogRead(6)*5.0/1023.0;
     }
 
     void suivreLigneDroite()
-    {       //Voltage0 = gauche, 1 = centre, 2 = droite
+    {
+            capteurIR capteur;
             float voltage[3];
-           //float encodeur_droit = 0,encodeur_gauche = 0;
-            int retour = 0;
             detection(voltage);
             Motor moteur;
             moteur.resetPIDAndEncoder(0.2);
             moteur.move(0.2);
-        while(retour !=1){
+        while(capteur.getDistance()>36){
             Serial.println("test");
                 
                 if(voltage[0]>=voltageNoirG && voltage[1]<voltageNoirM && voltage[2]<voltageNoirD){

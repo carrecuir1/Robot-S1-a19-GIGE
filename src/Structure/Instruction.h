@@ -40,14 +40,16 @@ struct Instruction {
             blueA();
             break;
         }
-        motor.moveDistance(30, 0.3);
+        motor.moveDistance(90, 0.3);
         servo.catchBall();
-        motor.findColor('A', YELLOW);
+        motor.uTurn(0.3);
+        motor.moveDistance(110, 0.3);
+        servo.openPliers();
     }
 
     //Fonction qui va contenir les instructions du robot B
     void warriorChallengeB(){
-        color valide = red;
+        color valide = blue;
         
         switch (valide)
         {
@@ -64,16 +66,15 @@ struct Instruction {
             blueB();
             break;
         }
-        motor.moveDistance(30, 0.3);
-        servo.catchBall();
-        motor.findColor('A', YELLOW);
+        motor.moveOverCircle(110);
     }
 
     void redA(){
-        motor.moveDistance(15, 0.4);
-        motor.moveOverCircle(17);
+        motor.angleTurn(-90);
+        motor.moveDistance(64, 0.3);
+        motor.angleTurn(90);
+        motor.moveDistance(94, 0.3);
         motor.angleTurn(-45);
-        motor.moveOverCircle(17);
     }
 
     void yellowA(){
@@ -115,12 +116,13 @@ struct Instruction {
         motor.moveDistance(15, 0.4);
         motor.angleTurn(-90);
         motor.moveDistance(31, 0.4);
+        motor.angleTurn(-135);
         motor.moveOverCircle(31);
     }
     
     void blueB(){
         motor.angleTurn(45);
-        motor.moveDistance(12, 0.4);
+        motor.moveDistance(14, 0.4);
         motor.angleTurn(-90);  
         motor.moveOverCircle(31);
         
