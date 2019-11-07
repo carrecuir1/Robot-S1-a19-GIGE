@@ -102,15 +102,17 @@ struct Motor {
         if(speed > 0){
             do
             {
-                checkPID();
+                MOTOR_SetSpeed(0, pid.getPID());
                 distanceRight = (diameter * ENCODER_Read(1))/3200;
+                delay(50);
             }
             while(distanceRight < distance);
         }else if(speed <0){
             do
             {
-                checkPID();
+                MOTOR_SetSpeed(0, pid.getPID());
                 distanceRight = (diameter * ENCODER_Read(1))/3200;
+                delay(50);
             }
             while(distanceRight > distance*-1);
         }

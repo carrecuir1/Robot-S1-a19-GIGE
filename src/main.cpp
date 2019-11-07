@@ -14,6 +14,12 @@ void loop() {
     instruction.warriorChallengeA();
 
   }
+
+  if(ROBUS_IsBumper(1)){
+    //ndelay(60000);
+    instruction.warriorChallengeB();
+
+  }
   
 }
 

@@ -39,7 +39,7 @@ struct Servo {
         {
             Serial.println(capteur.getDistance());
             motor.checkPID();
-            delay(10);
+            delay(50);
         }
 
         //Serial.println("fermeture");
