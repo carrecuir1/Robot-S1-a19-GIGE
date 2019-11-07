@@ -6,7 +6,7 @@ void setup() {
 }
 
 void loop() {
-  
+ 
   Instruction instruction = Instruction(consigne);
 
   if(ROBUS_IsBumper(3)){

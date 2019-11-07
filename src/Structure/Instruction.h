@@ -2,7 +2,8 @@
 #include <LibRobus.h>
 #include <Structure/Motor.h>
 #include <Structure/Servo.h>
-
+#include <Structure/suiveurLigne.h>
+#include <Structure/capteurIR.h>
 
 struct Instruction {
 
@@ -15,15 +16,24 @@ struct Instruction {
 
     Motor motor;
     Servo servo;
+    suiveurLigne suiveurligne;
+    //
+    capteurIR capteurir;
+    //
     float speed;
     Instruction(float consigne){
         motor = Motor();
         speed = consigne;
     }
 
+    void testIR(){
+        float dist;
+        dist = capteurir.getDistance();
+        Serial.println(dist);
+    }
     //Fonction qui va contenir les instructions du robot A
     void warriorChallengeA(){
-        color valide = red;
+        color valide = yellow;
 
         switch (valide)
         {
@@ -78,6 +88,13 @@ struct Instruction {
     }
 
     void yellowA(){
+        motor.angleTurn(-45);
+
+        motor.moveDistance(11, 0.4);
+        //motor.moveDistance(12, 0.4);
+        motor.angleTurn(-97);
+        //motor.moveDistance(10, 0.4); //mettre suiveurligne
+        
     }
 
     void greenA(){
