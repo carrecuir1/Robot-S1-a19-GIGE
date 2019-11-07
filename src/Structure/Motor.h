@@ -125,8 +125,8 @@ struct Motor {
         ENCODER_Reset(0);
         ENCODER_Reset(1);
         float distanceRight = 0;
-        MOTOR_SetSpeed(0, 0.3);
-        MOTOR_SetSpeed(1, 0.3);
+        MOTOR_SetSpeed(0, 0.15);
+        MOTOR_SetSpeed(1, 0.15);
         do
         {
             distanceRight = (diameter * ENCODER_Read(1))/3200;
