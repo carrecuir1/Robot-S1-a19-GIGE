@@ -9,17 +9,20 @@ void loop() {
  
   Instruction instruction = Instruction(consigne);
 
-  if(ROBUS_IsBumper(3)){
-    //ndelay(60000);
+  /*if(ROBUS_IsBumper(3)){
     instruction.warriorChallengeA();
 
-  }
-
-  if(ROBUS_IsBumper(1)){
-    //ndelay(60000);
+  }*/
+  SERVO_Enable(0);
+  delay(500);
+  SERVO_SetAngle(0,0);
+  delay(500);
+  SERVO_SetAngle(0,0);
+  /*if(ROBUS_IsBumper(3)){
+    delay(60000);
     instruction.warriorChallengeB();
 
-  }
+  }*/
   
 }
 

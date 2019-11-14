@@ -53,7 +53,8 @@ struct Instruction {
         servo.catchBall();
         motor.moveDistance(10, -0.2);
         motor.uTurn(0.2);
-        motor.moveDistance(80, 0.3);
+        motor.angleTurn(5);
+        motor.moveDistance(86, 0.3);
         servo.openPliers();
         motor.moveDistance(100, -0.2);
         motor.angleTurn(45);
@@ -64,7 +65,7 @@ struct Instruction {
 
     //Fonction qui va contenir les instructions du robot B
     void warriorChallengeB(){
-        color valide = red;
+        color valide = green;
         
         switch (valide)
         {
@@ -144,10 +145,10 @@ struct Instruction {
     void greenB(){
         motor.moveDistance(10, -0.3);
         motor.angleTurn(90);
-        motor.moveDistance(15, 0.3);
+        motor.moveDistance(17, 0.3);
         motor.angleTurn(-90);
         motor.moveDistance(31, 0.3);
-        motor.angleTurn(-135);
+        motor.angleTurn(-140);
         motor.moveOverCircle(31);
         /*motor.moveDistance(10, -0.3);
         motor.angleTurn(-90);
