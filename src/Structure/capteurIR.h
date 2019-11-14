@@ -1,10 +1,14 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 
+#ifndef CAPTEURIR_H
+#define CAPTEURIR_H
 #define NB_MESURE 4
+
 struct capteurIR {
     capteurIR(){
     }
+    
     float getDistance()
     {
       int Vo = 0;
@@ -17,4 +21,6 @@ struct capteurIR {
       }
       return (distance / NB_MESURE);
     }
-}
+};
+#endif
+

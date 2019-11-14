@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <LibRobus.h>
-#include <Structure/suiveurLigne.h>
+#include <Structure/Instruction.h>
 
 #define consigne 0.35
 

@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 
-#define kP 0.00001
-#define kI 0.0000015
+#define kP 0.00005
+#define kI 0.000005
 // Moteur gauche est esclave au moteur droit
 struct PID {
     float speedML;
