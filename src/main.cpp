@@ -8,7 +8,7 @@ void setup() {
 
 void loop() {
   track(0);
-  delay(100);
+  delay(10);
  
   
 }
