@@ -10,6 +10,7 @@
 #define BLUE 1
 #define YELLOW 2
 #define GREEN 3
+#define MOTOR_H
 
 struct Motor {
 
