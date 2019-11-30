@@ -2,6 +2,7 @@
 #include <LibRobus.h>
 #include <Structure/Motor.h>
 #include <Structure/Servo.h>
+#include <Structure/Bluetooth.h>
 //#include <Structure/suiveurLigne.h>
 #include <Structure/capteurIR.h>
 
@@ -16,6 +17,7 @@ struct Instruction {
 
     Motor motor;
     Servo servo;
+    Bluetooth bt;
    // suiveurLigne suiveurligne;
     ////
     //capteurIR capteurir;
@@ -24,14 +26,43 @@ struct Instruction {
     Instruction(float consigne){
         motor = Motor();
         speed = consigne;
+        bt = Bluetooth();
     }
 
+    void getBTInsctruction(){
+        int state = bt.read();
+        switch (state)
+        {
+        case 0:
+            bt.sendMessage("Inactive"); // Send back, to the phone, the String "LED: ON"
+            //desactivation des moteurs DC
+            break;
+        case 1:
+            bt.sendMessage("Active"); // Send back, to the phone, the String "LED: ON"
+            //activation des moteurs DC
+            break;
+        case 2:
+            bt.sendMessage("Left"); //Tourne les moteurs à gauche
+            motor.turn(-1);
+            delay(500);
+            break;
+        case 3:
+            bt.sendMessage("Right");
+            motor.turn(1);
+            delay(500);
+            break;
+        default:
+            motor.stopMotors();
+            break;
+        }
+    }
     /*void testIR(){
         float dist;
         dist = capteurir.getDistance();
         Serial.println(dist);
     }*/
     //Fonction qui va contenir les instructions du robot A
+    
     void warriorChallengeA(){
         color valide = blue;
 

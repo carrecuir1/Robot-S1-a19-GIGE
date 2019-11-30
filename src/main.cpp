@@ -1,15 +1,12 @@
 #include <main.h>
 
 void setup() {
-  BoardInit();
-  SERVO_Disable(0);
-  pixyInit();
 }
 
 void loop() {
-  track(0);
-  delay(10);
- 
-  
+  Serial.print("!");
+  Serial.print("Something to send.\r\n");
+  //Instruction instruction = Instruction(0.2);
+  //instruction.getBTInsctruction;
 }
 
