@@ -1,6 +1,6 @@
-#include <main.h>
+#include <Main.h>
 
-
+Instruction instr = Instruction(2.0);
 void setup() {
   BoardInit();
   Serial.begin(9600);
@@ -9,12 +9,5 @@ void setup() {
 }
 
 void loop() {
-  struct Launcher launcher;
-  int spinspeed = 255;
-
-  if(ROBUS_IsBumper(1))
-  
-  
-  //launcher.serveball();
-  launcher.launch(spinspeed);
+  instr.getBTInsctruction();
 }

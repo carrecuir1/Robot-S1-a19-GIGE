@@ -6,6 +6,11 @@
 #define circumference 1168.672467
 #define distancePulse 0.074809175064
 #define diameter 23.94
+#define RED 0
+#define BLUE 1
+#define YELLOW 2
+#define GREEN 3
+#define MOTOR_H
 
 struct Motor {
 
@@ -38,12 +43,12 @@ struct Motor {
 
     void turn(int8_t direction){
         if(direction < 0){
-            MOTOR_SetSpeed(0,0.2);
+            MOTOR_SetSpeed(0,0.1);
             MOTOR_SetSpeed(1,0);
         }
         else{
-            MOTOR_SetSpeed(0,1);
-            MOTOR_SetSpeed(1,0.2);
+            MOTOR_SetSpeed(0,0);
+            MOTOR_SetSpeed(1,0.1);
         }
     }
 
@@ -75,10 +80,16 @@ struct Motor {
     //Le robot avance pendant un temps indéfini
     void move(float speed){
         MOTOR_SetSpeed(1, speed);
-        checkPID();
+        MOTOR_SetSpeed(0, speed);
 
     }
-    
+    void moveWithPID(float speed){
+        resetPIDAndEncoder(speed);
+
+        MOTOR_SetSpeed(1, speed);
+        checkPID();
+    }
+
     //Fonction qui avance sur une certaine distance
     //Mettre un chiffre négatif ou positif pour la direction (-1, 1)
     void moveDistance(float distance, float speed)
@@ -88,9 +99,37 @@ struct Motor {
         resetPIDAndEncoder(speed);
 
         MOTOR_SetSpeed(1, speed);
+
+        if(speed > 0){
+            do
+            {
+                MOTOR_SetSpeed(0, pid.getPID());
+                distanceRight = (diameter * ENCODER_Read(1))/3200;
+                delay(50);
+            }
+            while(distanceRight < distance);
+        }else if(speed <0){
+            do
+            {
+                MOTOR_SetSpeed(0, pid.getPID());
+                distanceRight = (diameter * ENCODER_Read(1))/3200;
+                delay(50);
+            }
+            while(distanceRight > distance*-1);
+        }
+
+        MOTOR_SetSpeed(0, 0);
+        MOTOR_SetSpeed(1, 0);
+    }
+    void moveOverCircle(float distance)
+    {
+        ENCODER_Reset(0);
+        ENCODER_Reset(1);
+        float distanceRight = 0;
+        MOTOR_SetSpeed(0, 0.15);
+        MOTOR_SetSpeed(1, 0.15);
         do
         {
-            checkPID();
             distanceRight = (diameter * ENCODER_Read(1))/3200;
         }
         while(distanceRight < distance);
@@ -98,6 +137,9 @@ struct Motor {
         MOTOR_SetSpeed(0, 0);
         MOTOR_SetSpeed(1, 0);
     }
+
+    //REMOVE
+ 
 
     //Tourne tout en avancant
     void turnMoving(int8_t direction, float speed, float speedReduc){

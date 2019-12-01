@@ -1,109 +1,57 @@
 #include <Arduino.h>
 #include <LibRobus.h>
 #include <Structure/Motor.h>
+#include <Structure/Servo.h>
+#include <Structure/Bluetooth.h>
+#include <Structure/capteurIR.h>
+#include <Structure/launcher.h>
 
+
+//Va contenir les intrstuctions à effectuer pour le robot
 struct Instruction {
 
-    typedef enum {
-        red,
-        yellow,
-        green,
-        blue
-    } color;
-
     Motor motor;
+    Servo servo;
+    Bluetooth bt;
     float speed;
+    bool motorActive;
+    Launcher launch;
+
     Instruction(float consigne){
         motor = Motor();
         speed = consigne;
+        bt = Bluetooth();
+        motorActive = false;
     }
 
-    //Fonction qui va contenir les instructions du robot A
-    void warriorChallengeA(){
-        color valide = red;
-
-        switch (valide)
+    void getBTInsctruction(){
+        int state = bt.read();
+        switch (state)
         {
-        case red:
-            redA();
+        case 0:
+            //bt.sendMessage("Inactive"); // Send back, to the phone, the String "LED: ON"
+            launch.stop();
             break;
-        case yellow:
-            yellowA();
+        case 1:
+            //bt.sendMessage("Active"); // Send back, to the phone, the String "LED: ON"
+            launch.spin(255);
             break;
-        case green:
-            greenA();
+        case 2:
+            motor.turn(-1);//Tourne les moteurs à gauche
+            delay(500);
             break;
-        case blue:
-            blueA();
+        case 3:
+            motor.turn(1);
+            delay(500);
             break;
-        }
-    }
+        case 4:
+            launch.launch(255);
 
-    //Fonction qui va contenir les instructions du robot B
-    void warriorChallengeB(){
-        color valide = red;
-        
-        switch (valide)
-        {
-        case red:
-            redB();
+            
             break;
-        case yellow:
-            yellowB();
-            break;
-        case green:
-            greenB();
-            break;
-        case blue:
-            blueB();
+        default:
+            motor.stopMotors();
             break;
         }
     }
-    }
-
-    //Fonction qui va faire avancer le robot
-    void moveRobot(int8_t direction){
-        float speedWithDirection = speed*direction;
-        motor.resetPIDAndEncoder(speedWithDirection);
-        while(!ROBUS_IsBumper(2) and !ROBUS_IsBumper(1) and !ROBUS_IsBumper(0)){
-            motor.move(speedWithDirection);
-            delay(10);
-        }
-        motor.stopMotors();
-    }
-
-    void redA(){
-        
-    }
-
-    void yellowA(){
-
-    }
-
-    void greenA(){
-
-    }
-    
-    void blueA(){
-  
-    }
-
-    void redB(){
-
-    }
-
-    void yellowB(){
-
-    }
-
-    void greenB(){
-
-    }
-    
-    void blueB(){
-
-        
-    }
-
-
 };
