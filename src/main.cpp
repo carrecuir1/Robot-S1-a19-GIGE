@@ -8,5 +8,7 @@ void setup() {
 void loop() {
   struct Launcher launcher;
   int spinspeed = 200;
-  launcher.launch(spinspeed);
+  if(ROBUS_IsBumper(1))
+  launcher.serveball();
+  //launcher.launch(spinspeed);
 }

@@ -18,15 +18,16 @@ struct Launcher
     void serveball(){
         SERVO_Enable(0);
         SERVO_SetAngle(0,45);
+        delay(300);
+        SERVO_SetAngle(0,100);
         delay(250);
-        SERVO_SetAngle(0,90);
-        SERVO_Disable(0);
     }
 
-    void launch(spinspeed){
+    void launch(int spinspeed){
         spin(spinspeed);
         delay(500);
-        serveball;
-        stop;
+        serveball();
+        delay(500);
+        stop();
     }
 };
