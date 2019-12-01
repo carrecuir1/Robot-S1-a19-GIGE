@@ -3,31 +3,29 @@
 
 struct Launcher
 {
-    void spin(int spinspeed){
-        analogWrite(10,spinspeed); 
+    void spin(int spinspeed){   
+        analogWrite(2,spinspeed);
     }
-
+    
     void idle(int idlespeed){
-        analogWrite(10,idlespeed);
+        analogWrite(2,idlespeed);
     }
 
     void stop(){
-        analogWrite(10,0);
+        analogWrite(2,0);
     }
 
     void serveball(){
         SERVO_Enable(0);
-        SERVO_SetAngle(0,45);
-        delay(300);
-        SERVO_SetAngle(0,100);
-        delay(250);
-    }
+        SERVO_SetAngle(0,30);
+        delay(200);   
+        SERVO_Disable(0);
+        }
 
     void launch(int spinspeed){
         spin(spinspeed);
-        delay(500);
-        serveball();
-        delay(500);
+        delay(4000);
         stop();
-    }
+        serveball();
+       }
 };
