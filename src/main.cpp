@@ -2,14 +2,11 @@
 
 void setup() {
   BoardInit();
+  SERVO_Disable(0);
 }
 
 void loop() {
-     suiveurLigne follow;
-     // follow.suivreLigneDroite();
-     if(ROBUS_IsBumper(3))
-     {
-       follow.suivreLigneDroite();
-     }
+  struct Launcher launcher;
+  int spinspeed = 200;
+  launcher.launch(spinspeed);
 }
-
