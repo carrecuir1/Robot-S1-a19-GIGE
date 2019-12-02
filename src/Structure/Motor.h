@@ -20,7 +20,6 @@ struct Motor {
         
     }
     
-    #pragma region TurnFunctions
     //Fonction qui permet de tourner avec un moteur
     void angleTurn(float angle){
         int selectMotor = 0; //Le moteur qui doit tourner. 
@@ -74,8 +73,6 @@ struct Motor {
         MOTOR_SetSpeed(1, 0);
 
     }
-   
-    #pragma endregion TurnFunctions
 
     //Le robot avance pendant un temps indéfini
     void move(float speed){

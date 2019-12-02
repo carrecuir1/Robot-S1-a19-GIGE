@@ -35,14 +35,17 @@ struct Instruction {
             //activation des moteurs DC
             break;
         case 2:
+            bt.sendMessage("Tourne moteur gauche");
             motor.turn(-1);//Tourne les moteurs à gauche
             delay(500);
             break;
         case 3:
+            bt.sendMessage("Tourne moteur droite");
             motor.turn(1);
             delay(500);
             break;
         case 4:
+            bt.sendMessage("Tirer");
             //Tire une balle
             break;
         default:
