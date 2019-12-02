@@ -1,14 +1,29 @@
 #include <Main.h>
-
-SoftwareSerial BTSerial(10, 11); // RX | TX
+int state = 0;
 
 void setup() 
 {
-  BoardInit();
+ BoardInit();
+ Serial.begin(38400);
 }
 
 void loop()
-{
-  Instruction instr = Instruction(2.0);
-  instr.getBTInsctruction();
+{ 
+  int state;
+  if(Serial.available()){
+    state = Serial.read();
+  }
+
+  if(state == '0'){
+    MOTOR_SetSpeed(0,0.1);
+    MOTOR_SetSpeed(1,0);
+    state = 0;
+  }
+
+  if(state == '1'){
+
+    MOTOR_SetSpeed(1,0.1);
+    MOTOR_SetSpeed(0,0);
+    state = 0;
+  }
 }
