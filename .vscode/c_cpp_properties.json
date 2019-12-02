@@ -6,33 +6,35 @@
         {
             "name": "Win32",
             "includePath": [
-                "u:/Projet s1/Robot-S1-a19-GIGE/include",
-                "u:/Projet s1/Robot-S1-a19-GIGE/src",
-                "u:/Projet s1/Robot-S1-a19-GIGE/lib/LibRobUS/src",
-                "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
-                "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/cores/arduino",
-                "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/variants/mega",
-                "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                "C:/Users/garn1403/.platformio/packages/tool-unity",
+                "k:/Robot-S1-a19-GIGE/include",
+                "k:/Robot-S1-a19-GIGE/src",
+                "k:/Robot-S1-a19-GIGE/lib/Pixy2",
+                "k:/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/variants/mega",
+                "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "C:/Users/labt3201/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "u:/Projet s1/Robot-S1-a19-GIGE/include",
-                    "u:/Projet s1/Robot-S1-a19-GIGE/src",
-                    "u:/Projet s1/Robot-S1-a19-GIGE/lib/LibRobUS/src",
-                    "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                    "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
-                    "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/cores/arduino",
-                    "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/variants/mega",
-                    "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                    "C:/Users/garn1403/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                    "C:/Users/garn1403/.platformio/packages/tool-unity",
+                    "k:/Robot-S1-a19-GIGE/include",
+                    "k:/Robot-S1-a19-GIGE/src",
+                    "k:/Robot-S1-a19-GIGE/lib/Pixy2",
+                    "k:/Robot-S1-a19-GIGE/lib/LibRobUS/src",
+                    "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/variants/mega",
+                    "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "C:/Users/labt3201/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "C:/Users/labt3201/.platformio/packages/tool-unity",
                     ""
                 ]
             },
@@ -48,11 +50,7 @@
             "intelliSenseMode": "clang-x64",
             "cStandard": "c11",
             "cppStandard": "c++11",
-<<<<<<< HEAD
-            "compilerPath": "\"C:/Users/garn1403/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe\" -mmcu=atmega2560"
-=======
-            "compilerPath": "\"C:/Users/ClientSIC/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe\" -mmcu=atmega2560"
->>>>>>> origin/bluetooth_connection
+            "compilerPath": "\"C:/Users/labt3201/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe\" -mmcu=atmega2560"
         }
     ],
     "version": 4

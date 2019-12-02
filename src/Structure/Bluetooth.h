@@ -3,9 +3,6 @@
 
 #ifndef BLUETOOTH_H
 #define BLUETOOTH_H
-#define ledPin 
-
-SoftwareSerial BTSerial(1, 0); // RX | TX
 
 struct Bluetooth {
 

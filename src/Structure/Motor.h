@@ -44,10 +44,10 @@ struct Motor {
     void turn(int8_t direction){
         if(direction < 0){
             MOTOR_SetSpeed(0,0.1);
-            MOTOR_SetSpeed(1,0);
+            MOTOR_SetSpeed(1,-0.1);
         }
         else{
-            MOTOR_SetSpeed(0,0);
+            MOTOR_SetSpeed(0,-0.1);
             MOTOR_SetSpeed(1,0.1);
         }
     }
